@@ -151,20 +151,28 @@
         </div>
     </section>
 
-    <!-- PIT STOP TO EDSA — 3D SECTION -->
+    <!-- PIT STOP TO EDSA -->
     <section class="pitstop-section" id="pitstop">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Interactive Experience</span>
                 <h2 class="section-title">Pit Stop <span class="text-red">to EDSA</span></h2>
-                <p class="section-desc">Scroll to reveal what happens beneath the surface. See how extreme Philippine roads push your engine to its limits.</p>
+                <p class="section-desc">See what happens beneath the surface. Discover how extreme Philippine roads push your engine to its limits.</p>
             </div>
-        </div>
 
-        <div class="pitstop-experience">
-            <div class="pitstop-sticky">
-                <!-- Car visualization -->
-                <div class="car-scene" id="carScene">
+            <!-- Narration -->
+            <div class="narration-bar" id="narrationBar">
+                <div class="narration-avatar">
+                    <div class="avatar-ring"></div>
+                    <span>MV</span>
+                </div>
+                <p class="narration-text" id="narrationText">"You think you know extreme driving? Let me show you what your engine faces every single day on these roads..."</p>
+            </div>
+
+            <!-- Car Visualization -->
+            <div class="car-viewer">
+                <div class="car-viewer-inner" id="carViewer">
+                    <!-- EDSA Background -->
                     <div class="edsa-bg">
                         <div class="edsa-buildings">
                             <div class="building b1"></div>
@@ -183,134 +191,105 @@
                             <div class="traffic-car tc2"></div>
                             <div class="traffic-car tc3"></div>
                         </div>
-                        <div class="heat-waves" id="heatWaves"></div>
+                        <div class="heat-waves active"></div>
                     </div>
 
-                    <div class="main-car" id="mainCar">
-                        <!-- Car outer shell -->
+                    <!-- Car body (visible by default) -->
+                    <div class="main-car">
                         <div class="car-body" id="carBody">
                             <svg viewBox="0 0 600 250" class="car-svg">
-                                <!-- Car body -->
-                                <path class="car-shell" d="M80 180 L100 120 L160 80 L320 70 L420 80 L480 120 L520 180 Z" fill="#1a1a2e" stroke="#334" stroke-width="2"/>
-                                <!-- Roof -->
-                                <path class="car-shell" d="M170 80 L200 40 L380 35 L410 80" fill="#12122a" stroke="#334" stroke-width="2"/>
-                                <!-- Windows -->
-                                <path class="car-window" d="M180 78 L205 45 L290 42 L290 78 Z" fill="rgba(100,150,255,0.15)" stroke="#445" stroke-width="1"/>
-                                <path class="car-window" d="M300 78 L300 42 L375 42 L400 78 Z" fill="rgba(100,150,255,0.15)" stroke="#445" stroke-width="1"/>
-                                <!-- Wheels -->
+                                <path d="M80 180 L100 120 L160 80 L320 70 L420 80 L480 120 L520 180 Z" fill="#1a1a2e" stroke="#334" stroke-width="2"/>
+                                <path d="M170 80 L200 40 L380 35 L410 80" fill="#12122a" stroke="#334" stroke-width="2"/>
+                                <path d="M180 78 L205 45 L290 42 L290 78 Z" fill="rgba(100,150,255,0.15)" stroke="#445" stroke-width="1"/>
+                                <path d="M300 78 L300 42 L375 42 L400 78 Z" fill="rgba(100,150,255,0.15)" stroke="#445" stroke-width="1"/>
                                 <circle cx="160" cy="190" r="30" fill="#111" stroke="#333" stroke-width="3"/>
                                 <circle cx="160" cy="190" r="15" fill="#222" stroke="#444" stroke-width="2"/>
                                 <circle cx="440" cy="190" r="30" fill="#111" stroke="#333" stroke-width="3"/>
                                 <circle cx="440" cy="190" r="15" fill="#222" stroke="#444" stroke-width="2"/>
-                                <!-- Headlights -->
                                 <ellipse cx="510" cy="155" rx="12" ry="8" fill="#ffd700" opacity="0.8"/>
                                 <ellipse cx="90" cy="155" rx="12" ry="8" fill="#ff3333" opacity="0.6"/>
                             </svg>
                         </div>
 
-                        <!-- Engine (hidden initially, revealed on scroll) -->
+                        <!-- Engine (toggled on) -->
                         <div class="car-engine" id="carEngine">
                             <svg viewBox="0 0 600 250" class="engine-svg">
-                                <!-- Engine block -->
                                 <rect x="200" y="90" width="200" height="100" rx="8" fill="#1a1a2e" stroke="#ff3333" stroke-width="1.5" class="engine-glow"/>
-                                <!-- Cylinders -->
                                 <rect x="220" y="100" width="30" height="60" rx="4" fill="#222" stroke="#ff6644" stroke-width="1" class="cylinder"/>
                                 <rect x="260" y="100" width="30" height="60" rx="4" fill="#222" stroke="#ff6644" stroke-width="1" class="cylinder"/>
                                 <rect x="300" y="100" width="30" height="60" rx="4" fill="#222" stroke="#ff6644" stroke-width="1" class="cylinder"/>
                                 <rect x="340" y="100" width="30" height="60" rx="4" fill="#222" stroke="#ff6644" stroke-width="1" class="cylinder"/>
-                                <!-- Oil flow paths -->
                                 <path d="M220 170 Q250 185 290 170 Q330 155 370 170" fill="none" stroke="#ffd700" stroke-width="2" class="oil-flow" stroke-dasharray="8 4"/>
-                                <!-- Pistons -->
                                 <line x1="235" y1="100" x2="235" y2="85" stroke="#aaa" stroke-width="3" class="piston"/>
                                 <line x1="275" y1="100" x2="275" y2="85" stroke="#aaa" stroke-width="3" class="piston"/>
                                 <line x1="315" y1="100" x2="315" y2="85" stroke="#aaa" stroke-width="3" class="piston"/>
                                 <line x1="355" y1="100" x2="355" y2="85" stroke="#aaa" stroke-width="3" class="piston"/>
-                                <!-- Radiator -->
                                 <rect x="430" y="100" width="50" height="80" rx="4" fill="#1a2a3a" stroke="#3b82f6" stroke-width="1"/>
                                 <line x1="440" y1="110" x2="440" y2="170" stroke="#3b82f6" stroke-width="1" opacity="0.5"/>
                                 <line x1="455" y1="110" x2="455" y2="170" stroke="#3b82f6" stroke-width="1" opacity="0.5"/>
                                 <line x1="470" y1="110" x2="470" y2="170" stroke="#3b82f6" stroke-width="1" opacity="0.5"/>
-                                <!-- Oil filter -->
                                 <circle cx="170" cy="150" r="25" fill="#1a1a2e" stroke="#ffd700" stroke-width="1.5"/>
                                 <circle cx="170" cy="150" r="12" fill="#222" stroke="#ffd700" stroke-width="1"/>
                                 <text x="170" y="154" text-anchor="middle" fill="#ffd700" font-size="8" font-family="Inter">OIL</text>
                             </svg>
-
-                            <!-- Hotspots -->
-                            <div class="hotspot" id="hotspot1" style="left: 28%; top: 35%;" data-title="Oil Thermal Breakdown" data-desc="In Metro Manila's 38°C heat + constant idling, conventional oil breaks down 3x faster. Mobil 1's advanced full synthetic formula resists thermal breakdown up to 500°F, keeping your engine protected in the worst Philippine heat.">
-                                <div class="hotspot-pulse"></div>
-                                <div class="hotspot-dot"></div>
-                            </div>
-                            <div class="hotspot" id="hotspot2" style="left: 50%; top: 30%;" data-title="Stop-and-Go Wear" data-desc="EDSA averages 47 stop-and-go cycles per kilometer. Each restart causes metal-on-metal contact. Mobil 1's molecular film stays bonded to engine parts even when stopped, providing instant protection on every restart.">
-                                <div class="hotspot-pulse"></div>
-                                <div class="hotspot-dot"></div>
-                            </div>
-                            <div class="hotspot" id="hotspot3" style="left: 72%; top: 40%;" data-title="Cooling System Strain" data-desc="Flood wading and extreme heat push cooling systems to their limits. Mobil 1 helps regulate engine temperature and prevents sludge build-up that clogs cooling passages, even in the most punishing conditions.">
-                                <div class="hotspot-pulse"></div>
-                                <div class="hotspot-dot"></div>
-                            </div>
                         </div>
-                    </div>
-
-                    <!-- Max narration overlay -->
-                    <div class="narration" id="narration">
-                        <div class="narration-avatar">
-                            <div class="avatar-ring"></div>
-                            <span>MV</span>
-                        </div>
-                        <p class="narration-text" id="narrationText">"You think you know extreme driving? Let me show you what your engine faces every single day on these roads..."</p>
                     </div>
                 </div>
 
-                <!-- Scroll progress -->
-                <div class="scroll-progress-bar">
-                    <div class="scroll-progress-fill" id="scrollProgressFill"></div>
-                </div>
+                <!-- Toggle Button -->
+                <button class="reveal-engine-btn" id="revealEngineBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <span id="revealBtnText">Reveal the Engine</span>
+                </button>
             </div>
 
-            <!-- Scroll triggers -->
-            <div class="scroll-spacer" id="scrollSpacer">
-                <div class="scroll-step" data-step="1" data-narration="&quot;You think you know extreme driving? Let me show you what your engine faces every single day on these roads...&quot;">
-                    <div class="step-content">
-                        <span class="step-number">01</span>
-                        <h3>The Daily Extreme</h3>
-                        <p>What feels like a normal commute is actually pushing your engine to Extreme conditions.</p>
-                    </div>
-                </div>
-                <div class="scroll-step" data-step="2" data-narration="&quot;See that engine? Every time you're stuck in traffic, it's running hot. The oil is fighting for its life in there...&quot;">
-                    <div class="step-content">
-                        <span class="step-number">02</span>
-                        <h3>Under the Hood</h3>
-                        <p>As we peel back the panels, the engine reveals itself — glowing with the heat it silently endures.</p>
-                    </div>
-                </div>
-                <div class="scroll-step" data-step="3" data-narration="&quot;This is where championships are won or lost. Not on the track — right here, in your engine. Click the hotspots to learn more.&quot;">
-                    <div class="step-content">
-                        <span class="step-number">03</span>
-                        <h3>The Hotspots</h3>
-                        <p>Tap below to discover how Mobil 1 solves each "Pinoy Driving" problem.</p>
-                        <div class="hotspot-buttons">
-                            <button class="hotspot-btn" data-title="Oil Thermal Breakdown" data-desc="In Metro Manila's 38°C heat + constant idling, conventional oil breaks down 3x faster. Mobil 1's advanced full synthetic formula resists thermal breakdown up to 500°F, keeping your engine protected in the worst Philippine heat.">
-                                <span class="hb-dot"></span>
-                                <span class="hb-label">Oil Thermal Breakdown</span>
-                            </button>
-                            <button class="hotspot-btn" data-title="Stop-and-Go Wear" data-desc="EDSA averages 47 stop-and-go cycles per kilometer. Each restart causes metal-on-metal contact. Mobil 1's molecular film stays bonded to engine parts even when stopped, providing instant protection on every restart.">
-                                <span class="hb-dot"></span>
-                                <span class="hb-label">Stop-and-Go Wear</span>
-                            </button>
-                            <button class="hotspot-btn" data-title="Cooling System Strain" data-desc="Flood wading and extreme heat push cooling systems to their limits. Mobil 1 helps regulate engine temperature and prevents sludge build-up that clogs cooling passages, even in the most punishing conditions.">
-                                <span class="hb-dot"></span>
-                                <span class="hb-label">Cooling System Strain</span>
-                            </button>
+            <!-- Hotspot Cards -->
+            <div class="hotspot-cards" id="hotspotCards">
+                <h3 class="hotspot-cards-title">Click to see how Mobil 1 protects against "Pinoy Driving" problems:</h3>
+                <div class="hotspot-cards-grid">
+                    <button class="hotspot-card" data-title="Oil Thermal Breakdown" data-desc="In Metro Manila's 38°C heat + constant idling, conventional oil breaks down 3x faster. Mobil 1's advanced full synthetic formula resists thermal breakdown up to 500°F, keeping your engine protected in the worst Philippine heat.">
+                        <div class="hc-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M16.36 16.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M16.36 7.64l1.42-1.42"/></svg>
                         </div>
-                    </div>
+                        <div class="hc-info">
+                            <h4>Oil Thermal Breakdown</h4>
+                            <p>38°C heat + idling = 3x faster oil degradation</p>
+                        </div>
+                        <div class="hc-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </div>
+                    </button>
+                    <button class="hotspot-card" data-title="Stop-and-Go Wear" data-desc="EDSA averages 47 stop-and-go cycles per kilometer. Each restart causes metal-on-metal contact. Mobil 1's molecular film stays bonded to engine parts even when stopped, providing instant protection on every restart.">
+                        <div class="hc-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        </div>
+                        <div class="hc-info">
+                            <h4>Stop-and-Go Wear</h4>
+                            <p>47 stop-and-go cycles per km on EDSA</p>
+                        </div>
+                        <div class="hc-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </div>
+                    </button>
+                    <button class="hotspot-card" data-title="Cooling System Strain" data-desc="Flood wading and extreme heat push cooling systems to their limits. Mobil 1 helps regulate engine temperature and prevents sludge build-up that clogs cooling passages, even in the most punishing conditions.">
+                        <div class="hc-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+                        </div>
+                        <div class="hc-info">
+                            <h4>Cooling System Strain</h4>
+                            <p>Flood wading + extreme heat push limits</p>
+                        </div>
+                        <div class="hc-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </div>
+                    </button>
                 </div>
             </div>
         </div>
 
         <!-- Hotspot detail modal -->
         <div class="hotspot-modal" id="hotspotModal">
-            <div class="modal-backdrop"></div>
+            <div class="modal-backdrop" id="modalBackdrop"></div>
             <div class="modal-content">
                 <button class="modal-close" id="modalClose">&times;</button>
                 <div class="modal-icon">

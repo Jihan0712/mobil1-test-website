@@ -79,102 +79,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
     statValues.forEach(el => countObserver.observe(el));
 
-    // ===== PIT STOP TO EDSA — Scroll Experience =====
-    const pitstopSection = document.getElementById('pitstop');
-    const scrollSpacer = document.getElementById('scrollSpacer');
+    // ===== PIT STOP TO EDSA — Engine Reveal + Hotspot Cards =====
     const carBody = document.getElementById('carBody');
     const carEngine = document.getElementById('carEngine');
-    const narration = document.getElementById('narration');
+    const revealBtn = document.getElementById('revealEngineBtn');
+    const revealBtnText = document.getElementById('revealBtnText');
     const narrationText = document.getElementById('narrationText');
-    const heatWaves = document.getElementById('heatWaves');
-    const scrollProgressFill = document.getElementById('scrollProgressFill');
-    const hotspots = document.querySelectorAll('.hotspot');
-    const scrollSteps = document.querySelectorAll('.scroll-step');
+    let engineRevealed = false;
 
-    window.addEventListener('scroll', () => {
-        if (!scrollSpacer) return;
-
-        const spacerRect = scrollSpacer.getBoundingClientRect();
-        const spacerTop = spacerRect.top;
-        const spacerHeight = spacerRect.height;
-        const windowHeight = window.innerHeight;
-
-        // Calculate progress through the scroll spacer (0 to 1)
-        const progress = Math.max(0, Math.min(1, -spacerTop / (spacerHeight - windowHeight)));
-
-        // Update scroll progress bar
-        if (scrollProgressFill) {
-            scrollProgressFill.style.height = (progress * 100) + '%';
-        }
-
-        // Phase 1: Show car in traffic (0–30%)
-        // Phase 2: Reveal engine (30–60%)
-        // Phase 3: Show hotspots (60–100%)
-
-        if (progress < 0.3) {
-            // Car visible, engine hidden
+    revealBtn.addEventListener('click', () => {
+        engineRevealed = !engineRevealed;
+        if (engineRevealed) {
+            carBody.classList.add('transparent');
+            carEngine.classList.add('visible');
+            revealBtn.classList.add('active');
+            revealBtnText.textContent = 'Show Car Body';
+            narrationText.textContent = '"See that engine? Every time you\'re stuck in traffic, it\'s running hot. The oil is fighting for its life in there..."';
+        } else {
             carBody.classList.remove('transparent');
             carEngine.classList.remove('visible');
-            hotspots.forEach(h => h.classList.remove('visible'));
-            if (heatWaves) heatWaves.classList.add('active');
-        } else if (progress < 0.5) {
-            // Transition: car body fades, engine appears
-            carBody.classList.add('transparent');
-            carEngine.classList.add('visible');
-            hotspots.forEach(h => h.classList.remove('visible'));
-            if (heatWaves) heatWaves.classList.add('active');
-        } else {
-            // Engine visible + hotspots clickable
-            carBody.classList.add('transparent');
-            carEngine.classList.add('visible');
-            hotspots.forEach(h => h.classList.add('visible'));
-            if (heatWaves) heatWaves.classList.add('active');
-        }
-
-        // Step content visibility
-        scrollSteps.forEach(step => {
-            const stepRect = step.getBoundingClientRect();
-            const stepContent = step.querySelector('.step-content');
-            if (stepRect.top < windowHeight * 0.7 && stepRect.bottom > windowHeight * 0.2) {
-                stepContent.classList.add('visible');
-                // Update narration
-                const narrationData = step.dataset.narration;
-                if (narrationData && narrationText) {
-                    narrationText.textContent = narrationData;
-                    narration.classList.add('visible');
-                }
-            } else {
-                stepContent.classList.remove('visible');
-            }
-        });
-
-        // Hide narration if not in scroll area
-        if (spacerTop > windowHeight || spacerRect.bottom < 0) {
-            narration.classList.remove('visible');
+            revealBtn.classList.remove('active');
+            revealBtnText.textContent = 'Reveal the Engine';
+            narrationText.textContent = '"You think you know extreme driving? Let me show you what your engine faces every single day on these roads..."';
         }
     });
 
-    // ===== HOTSPOT CLICK =====
+    // ===== HOTSPOT CARD CLICKS =====
     const hotspotModal = document.getElementById('hotspotModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalDesc = document.getElementById('modalDesc');
     const modalClose = document.getElementById('modalClose');
-    const modalBackdrop = hotspotModal.querySelector('.modal-backdrop');
+    const modalBackdrop = document.getElementById('modalBackdrop');
 
-    // Visual hotspot dots on the engine (decorative, also clickable if reachable)
-    hotspots.forEach(hotspot => {
-        hotspot.addEventListener('click', () => {
-            modalTitle.textContent = hotspot.dataset.title;
-            modalDesc.textContent = hotspot.dataset.desc;
-            hotspotModal.classList.add('active');
-        });
-    });
-
-    // Hotspot buttons in step-3 panel (always clickable)
-    document.querySelectorAll('.hotspot-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            modalTitle.textContent = btn.dataset.title;
-            modalDesc.textContent = btn.dataset.desc;
+    document.querySelectorAll('.hotspot-card').forEach(card => {
+        card.addEventListener('click', () => {
+            modalTitle.textContent = card.dataset.title;
+            modalDesc.textContent = card.dataset.desc;
             hotspotModal.classList.add('active');
         });
     });

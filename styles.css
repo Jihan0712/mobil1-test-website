@@ -552,31 +552,70 @@ img { max-width: 100%; }
 
 /* ===== PIT STOP SECTION ===== */
 .pitstop-section {
-    padding-top: 120px;
+    padding: 120px 0;
     background: linear-gradient(180deg, #0d0d1a 0%, var(--dark) 100%);
 }
 
-.pitstop-experience {
-    position: relative;
+/* Narration Bar */
+.narration-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+    background: rgba(10, 10, 20, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--dark-border);
+    border-radius: 12px;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.pitstop-sticky {
-    position: sticky;
-    top: 0;
-    height: 100vh;
+.narration-avatar {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 50%;
+    background: var(--navy);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    z-index: 6;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+    position: relative;
 }
 
-.car-scene {
-    position: relative;
-    width: 100%;
+.avatar-ring {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid var(--red);
+}
+
+.narration-text {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.6;
+}
+
+/* Car Viewer */
+.car-viewer {
     max-width: 800px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.car-viewer-inner {
+    position: relative;
     aspect-ratio: 16/9;
-    z-index: 10;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--dark-border);
+    background: linear-gradient(180deg, #0a0a1a 0%, #141428 40%, #1a1a30 100%);
 }
 
 /* EDSA Background */
@@ -584,9 +623,6 @@ img { max-width: 100%; }
     position: absolute;
     inset: 0;
     overflow: hidden;
-    border-radius: 16px;
-    background: linear-gradient(180deg, #0a0a1a 0%, #141428 40%, #1a1a30 100%);
-    border: 1px solid var(--dark-border);
 }
 
 .edsa-buildings {
@@ -706,7 +742,7 @@ img { max-width: 100%; }
 }
 
 .car-body, .car-engine {
-    transition: opacity 1s ease;
+    transition: opacity 0.8s ease;
 }
 
 .car-body { opacity: 1; }
@@ -716,7 +752,7 @@ img { max-width: 100%; }
     inset: 0;
 }
 
-.car-body.transparent { opacity: 0.1; }
+.car-body.transparent { opacity: 0.08; }
 .car-engine.visible { opacity: 1; }
 
 .car-svg, .engine-svg {
@@ -767,245 +803,154 @@ img { max-width: 100%; }
     100% { transform: translateY(-5px); }
 }
 
-/* Hotspots */
-.hotspot {
-    position: absolute;
-    width: 44px;
-    height: 44px;
+/* Reveal Engine Button */
+.reveal-engine-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 14px 32px;
+    background: rgba(255, 0, 0, 0.1);
+    border: 2px solid var(--red);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
     cursor: pointer;
-    z-index: 100;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
+    transition: all 0.3s ease;
 }
 
-.hotspot.visible {
-    opacity: 1;
-    pointer-events: auto;
+.reveal-engine-btn svg {
+    width: 20px;
+    height: 20px;
 }
 
-.hotspot-pulse {
-    position: absolute;
-    inset: -8px;
-    border-radius: 50%;
-    border: 2px solid var(--red);
-    animation: hotspot-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-@keyframes hotspot-ping {
-    0% { transform: scale(0.8); opacity: 1; }
-    100% { transform: scale(2); opacity: 0; }
-}
-
-.hotspot-dot {
-    position: absolute;
-    inset: 8px;
+.reveal-engine-btn:hover {
     background: var(--red);
-    border-radius: 50%;
-    box-shadow: 0 0 20px var(--red-glow), 0 0 40px var(--red-glow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 0 30px var(--red-glow);
+    transform: translateY(-2px);
 }
 
-.hotspot:hover .hotspot-dot {
-    transform: scale(1.3);
-    box-shadow: 0 0 25px var(--red-glow), 0 0 50px var(--red-glow);
+.reveal-engine-btn.active {
+    background: var(--red);
+    box-shadow: 0 0 20px var(--red-glow);
 }
 
-.hotspot::after {
-    content: attr(data-title);
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    padding: 6px 12px;
-    background: rgba(10, 10, 20, 0.95);
-    border: 1px solid var(--red);
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    color: #fff;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
+/* Hotspot Cards */
+.hotspot-cards {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.hotspot:hover::after {
-    opacity: 1;
+.hotspot-cards-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-/* Narration */
-.narration {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    display: flex;
-    align-items: flex-start;
+.hotspot-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
-    padding: 16px 20px;
-    background: rgba(10, 10, 20, 0.9);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--dark-border);
-    border-radius: 12px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
 }
 
-.narration.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.narration-avatar {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    border-radius: 50%;
-    background: var(--navy);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 14px;
-    color: #fff;
-    position: relative;
-}
-
-.avatar-ring {
-    position: absolute;
-    inset: -3px;
-    border-radius: 50%;
-    border: 2px solid var(--red);
-}
-
-.narration-text {
-    font-size: 14px;
-    color: var(--text-muted);
-    font-style: italic;
-    line-height: 1.6;
-}
-
-/* Scroll Progress */
-.scroll-progress-bar {
-    position: absolute;
-    right: 20px;
-    top: 20%;
-    bottom: 20%;
-    width: 3px;
-    background: var(--dark-border);
-    border-radius: 2px;
-}
-
-.scroll-progress-fill {
-    width: 100%;
-    height: 0%;
-    background: var(--red);
-    border-radius: 2px;
-    transition: height 0.1s linear;
-}
-
-/* Scroll Steps */
-.scroll-spacer {
-    position: relative;
-    z-index: 5;
-    pointer-events: none;
-}
-
-.scroll-step {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 40px;
-}
-
-.step-content {
-    max-width: 360px;
-    padding: 32px;
-    background: rgba(10, 10, 20, 0.85);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--dark-border);
-    border-radius: 16px;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s ease;
-    pointer-events: auto;
-}
-
-.step-content.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.step-number {
-    font-family: var(--font-display);
-    font-size: 48px;
-    font-weight: 700;
-    color: rgba(255,0,0,0.15);
-    line-height: 1;
-}
-
-.step-content h3 {
-    font-family: var(--font-display);
-    font-size: 24px;
-    font-weight: 600;
-    color: #fff;
-    margin: 8px 0 12px;
-}
-
-.step-content p {
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.7;
-}
-
-/* Hotspot Buttons inside Step 3 */
-.hotspot-buttons {
+.hotspot-card {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 16px;
-}
-
-.hotspot-btn {
-    display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    background: rgba(255, 0, 0, 0.08);
-    border: 1px solid rgba(255, 0, 0, 0.3);
-    border-radius: 10px;
+    gap: 16px;
+    padding: 28px 20px;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 16px;
     color: #fff;
-    font-size: 13px;
-    font-weight: 500;
     font-family: var(--font-body);
     cursor: pointer;
     transition: all 0.3s ease;
-    text-align: left;
-    pointer-events: auto;
+    text-align: center;
 }
 
-.hotspot-btn:hover {
-    background: rgba(255, 0, 0, 0.18);
+.hotspot-card:hover {
     border-color: var(--red);
-    transform: translateX(4px);
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.15);
+    background: rgba(255, 0, 0, 0.06);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(255, 0, 0, 0.12);
 }
 
-.hb-dot {
-    width: 12px;
-    height: 12px;
-    min-width: 12px;
-    background: var(--red);
+.hc-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 0, 0, 0.1);
+    border-radius: 16px;
+    color: var(--red);
+    transition: all 0.3s ease;
+}
+
+.hotspot-card:hover .hc-icon {
+    background: rgba(255, 0, 0, 0.2);
+    transform: scale(1.1);
+}
+
+.hc-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.hc-info h4 {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.hc-info p {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.hc-arrow {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
-    box-shadow: 0 0 10px var(--red-glow);
-    animation: hotspot-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    background: rgba(255, 0, 0, 0.1);
+    color: var(--red);
+    transition: all 0.3s ease;
 }
 
-.hb-label {
-    flex: 1;
+.hc-arrow svg {
+    width: 16px;
+    height: 16px;
+}
+
+.hotspot-card:hover .hc-arrow {
+    background: var(--red);
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .hotspot-cards-grid {
+        grid-template-columns: 1fr;
+    }
+    .hotspot-card {
+        flex-direction: row;
+        text-align: left;
+    }
+    .hc-arrow {
+        margin-left: auto;
+    }
 }
 
 /* Hotspot Modal */
