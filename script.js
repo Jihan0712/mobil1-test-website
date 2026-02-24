@@ -117,17 +117,18 @@ document.addEventListener('DOMContentLoaded', () => {
             carEngine.classList.remove('visible');
             hotspots.forEach(h => h.classList.remove('visible'));
             if (heatWaves) heatWaves.classList.add('active');
-        } else if (progress < 0.6) {
+        } else if (progress < 0.5) {
             // Transition: car body fades, engine appears
             carBody.classList.add('transparent');
             carEngine.classList.add('visible');
             hotspots.forEach(h => h.classList.remove('visible'));
             if (heatWaves) heatWaves.classList.add('active');
         } else {
-            // Hotspots visible
+            // Engine visible + hotspots clickable
             carBody.classList.add('transparent');
             carEngine.classList.add('visible');
             hotspots.forEach(h => h.classList.add('visible'));
+            if (heatWaves) heatWaves.classList.add('active');
         }
 
         // Step content visibility
