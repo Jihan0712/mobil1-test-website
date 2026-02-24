@@ -161,10 +161,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalClose = document.getElementById('modalClose');
     const modalBackdrop = hotspotModal.querySelector('.modal-backdrop');
 
+    // Visual hotspot dots on the engine (decorative, also clickable if reachable)
     hotspots.forEach(hotspot => {
         hotspot.addEventListener('click', () => {
             modalTitle.textContent = hotspot.dataset.title;
             modalDesc.textContent = hotspot.dataset.desc;
+            hotspotModal.classList.add('active');
+        });
+    });
+
+    // Hotspot buttons in step-3 panel (always clickable)
+    document.querySelectorAll('.hotspot-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            modalTitle.textContent = btn.dataset.title;
+            modalDesc.textContent = btn.dataset.desc;
             hotspotModal.classList.add('active');
         });
     });
