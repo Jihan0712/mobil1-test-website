@@ -1062,7 +1062,262 @@ function updateMileTracker(stressScore) {
 document.addEventListener('DOMContentLoaded', () => {
     PassportSystem.init();
     initMobileApp();
+    initQRHub();
 });
+
+// ==================== QR EXPERIENCE HUB ====================
+
+function initQRHub() {
+    initQRScan();
+    initQRPassportShare();
+    initQRARPreview();
+    initQRVerify();
+}
+
+// --- QR Code Generator (Canvas-based) ---
+function generateQRCode(canvas, data, size = 200) {
+    // Lightweight QR code drawn on canvas using a data-pattern approach
+    const ctx = canvas.getContext('2d');
+    canvas.width = size;
+    canvas.height = size;
+
+    // Create a deterministic pattern from the data string
+    const moduleCount = 25;
+    const cellSize = size / moduleCount;
+    const grid = [];
+
+    // Hash function to create consistent pattern from string
+    function hashCode(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash |= 0;
+        }
+        return hash;
+    }
+
+    // Generate pattern
+    const seed = hashCode(data);
+    for (let r = 0; r < moduleCount; r++) {
+        grid[r] = [];
+        for (let c = 0; c < moduleCount; c++) {
+            grid[r][c] = 0;
+        }
+    }
+
+    // Finder patterns (3 corners)
+    function drawFinderPattern(sr, sc) {
+        for (let r = 0; r < 7; r++) {
+            for (let c = 0; c < 7; c++) {
+                if (r === 0 || r === 6 || c === 0 || c === 6 ||
+                    (r >= 2 && r <= 4 && c >= 2 && c <= 4)) {
+                    grid[sr + r][sc + c] = 1;
+                }
+            }
+        }
+    }
+
+    drawFinderPattern(0, 0);
+    drawFinderPattern(0, moduleCount - 7);
+    drawFinderPattern(moduleCount - 7, 0);
+
+    // Timing patterns
+    for (let i = 8; i < moduleCount - 8; i++) {
+        grid[6][i] = i % 2 === 0 ? 1 : 0;
+        grid[i][6] = i % 2 === 0 ? 1 : 0;
+    }
+
+    // Data area — fill with deterministic pattern from seed
+    let rng = Math.abs(seed);
+    function nextRng() {
+        rng = (rng * 16807 + 12345) & 0x7fffffff;
+        return rng;
+    }
+
+    for (let r = 0; r < moduleCount; r++) {
+        for (let c = 0; c < moduleCount; c++) {
+            // Skip finder + timing patterns
+            if ((r < 8 && c < 8) || (r < 8 && c >= moduleCount - 8) ||
+                (r >= moduleCount - 8 && c < 8) || r === 6 || c === 6) {
+                continue;
+            }
+            grid[r][c] = nextRng() % 3 < 2 ? 1 : 0;
+        }
+    }
+
+    // Draw
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, size, size);
+
+    ctx.fillStyle = '#0a0a14';
+    for (let r = 0; r < moduleCount; r++) {
+        for (let c = 0; c < moduleCount; c++) {
+            if (grid[r][c]) {
+                ctx.fillRect(
+                    Math.round(c * cellSize),
+                    Math.round(r * cellSize),
+                    Math.ceil(cellSize),
+                    Math.ceil(cellSize)
+                );
+            }
+        }
+    }
+
+    // Mobil 1 logo in center
+    const centerSize = Math.round(size * 0.18);
+    const cx = Math.round((size - centerSize) / 2);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(cx - 2, cx - 2, centerSize + 4, centerSize + 4);
+    ctx.fillStyle = '#FF0000';
+    ctx.font = `bold ${Math.round(centerSize * 0.55)}px Oswald, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('M1', size / 2, size / 2);
+
+    canvas.style.display = 'block';
+}
+
+// --- Talyer Standee Scanner ---
+function initQRScan() {
+    const scanBtn = $('#qrScanBtn');
+    const scanArea = $('#qrScanArea');
+    if (!scanBtn) return;
+
+    scanBtn.addEventListener('click', () => {
+        scanBtn.disabled = true;
+        scanBtn.innerHTML = '<span class="ptr-spinner" style="width:16px;height:16px;display:inline-block;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:splash-spin 0.6s linear infinite;"></span> Scanning...';
+
+        // Simulate scan process
+        setTimeout(() => {
+            showToast('QR Code detected! Opening Engine Stress Calculator...', 'success');
+
+            setTimeout(() => {
+                document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
+
+                scanBtn.disabled = false;
+                scanBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> Scan Talyer QR Code`;
+            }, 1500);
+        }, 2000);
+    });
+
+    // Tapping the viewfinder also triggers
+    scanArea?.addEventListener('click', () => scanBtn.click());
+}
+
+// --- Share Service Passport QR ---
+function initQRPassportShare() {
+    const genBtn = $('#qrGenerateBtn');
+    const canvas = $('#qrCanvas');
+    const placeholder = $('.qr-placeholder');
+    const vehicleSelect = $('#qrVehicleSelect');
+    const picker = $('#qrVehiclePicker');
+    if (!genBtn) return;
+
+    function loadVehicles() {
+        let vehicles = [];
+        try { vehicles = JSON.parse(localStorage.getItem('mobil1_vehicles')) || []; }
+        catch { vehicles = []; }
+        return vehicles;
+    }
+
+    function populatePicker() {
+        const vehicles = loadVehicles();
+        if (!picker) return;
+        picker.innerHTML = vehicles.map((v, i) =>
+            `<option value="${i}">${v.plate} — ${v.name}</option>`
+        ).join('');
+    }
+
+    genBtn.addEventListener('click', () => {
+        const vehicles = loadVehicles();
+
+        if (vehicles.length === 0) {
+            showToast('Register a vehicle first in Service Passport!', 'warning');
+            document.getElementById('passport')?.scrollIntoView({ behavior: 'smooth' });
+            return;
+        }
+
+        // Show vehicle picker if multiple
+        if (vehicles.length > 1) {
+            vehicleSelect.style.display = 'block';
+            populatePicker();
+        }
+
+        const idx = picker ? parseInt(picker.value) || 0 : 0;
+        const v = vehicles[idx] || vehicles[0];
+
+        // Build passport data string
+        const passportData = JSON.stringify({
+            plate: v.plate,
+            name: v.name,
+            mileage: v.mileage,
+            lastOil: v.lastOil,
+            services: (v.services || []).length,
+            reminders: (v.reminders || []).length,
+            url: window.location.href + '#passport'
+        });
+
+        // Generate QR
+        if (placeholder) placeholder.style.display = 'none';
+        generateQRCode(canvas, passportData);
+
+        showToast(`QR generated for ${v.plate} — ${v.name}`, 'success');
+
+        genBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> Regenerate QR`;
+    });
+
+    // Re-generate when picker changes
+    picker?.addEventListener('change', () => genBtn.click());
+}
+
+// --- AR Max Verstappen Preview ---
+function initQRARPreview() {
+    const arBtn = $('#qrARBtn');
+    if (!arBtn) return;
+
+    arBtn.addEventListener('click', () => {
+        arBtn.disabled = true;
+        arBtn.innerHTML = '<span class="ptr-spinner" style="width:16px;height:16px;display:inline-block;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:splash-spin 0.6s linear infinite;"></span> Initializing AR...';
+
+        setTimeout(() => {
+            showToast('AR Preview: Max Verstappen says "Your oil faces more heat than my RB20!" 🏎️', 'success');
+
+            // Navigate to pit stop section where Max narrates
+            setTimeout(() => {
+                document.getElementById('pitstop')?.scrollIntoView({ behavior: 'smooth' });
+                // Trigger engine reveal
+                setTimeout(() => {
+                    const revealBtn = $('#revealEngineBtn');
+                    if (revealBtn && !revealBtn.classList.contains('active')) {
+                        revealBtn.click();
+                    }
+                }, 800);
+            }, 1000);
+
+            arBtn.disabled = false;
+            arBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Launch AR Preview`;
+        }, 2500);
+    });
+}
+
+// --- Verify Product QR ---
+function initQRVerify() {
+    const verifyBtn = $('#qrVerifyBtn');
+    if (!verifyBtn) return;
+
+    verifyBtn.addEventListener('click', () => {
+        verifyBtn.disabled = true;
+        verifyBtn.innerHTML = '<span class="ptr-spinner" style="width:16px;height:16px;display:inline-block;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:splash-spin 0.6s linear infinite;"></span> Verifying...';
+
+        setTimeout(() => {
+            showToast('✓ Product verified: Authentic Mobil 1™ 5W-30 — Batch MNL-2026-0842', 'success');
+
+            verifyBtn.disabled = false;
+            verifyBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Scan Product QR`;
+        }, 2000);
+    });
+}
 
 // ==================== MOBILE APP FEATURES ====================
 
@@ -1213,6 +1468,10 @@ function initFAB() {
                     break;
                 case 'calc-stress':
                     document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
+                    break;
+                case 'scan-qr':
+                    document.getElementById('qrhub')?.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => $('#qrScanBtn')?.click(), 700);
                     break;
             }
         });

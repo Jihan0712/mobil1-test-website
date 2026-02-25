@@ -71,6 +71,7 @@
                 <a href="#stress">Extreme Index</a>
                 <a href="#pitstop">Pit Stop</a>
                 <a href="#jargon">Jargon Translator</a>
+                <a href="#qrhub">QR Experience</a>
                 <a href="#calculator">Stress Calculator</a>
                 <a href="#rewards">Rewards</a>
             </div>
@@ -86,6 +87,7 @@
         <a href="#stress">Extreme Index</a>
         <a href="#pitstop">Pit Stop</a>
         <a href="#jargon">Jargon Translator</a>
+        <a href="#qrhub">QR Experience</a>
         <a href="#calculator">Stress Calculator</a>
         <a href="#rewards">Rewards</a>
     </div>
@@ -746,6 +748,173 @@
         </div>
     </section>
 
+    <!-- ==================== QR EXPERIENCE HUB ==================== -->
+    <section class="qr-section" id="qrhub">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">QR / Scan Experience</span>
+                <h2 class="section-title">Scan. Share. <span class="text-red">Connect.</span></h2>
+                <p class="section-desc">Every touchpoint becomes interactive. Scan QR codes at Talyer standees to check your engine stress, share your service passport, or unlock exclusive AR content with Max Verstappen.</p>
+            </div>
+
+            <div class="qr-grid">
+                <!-- QR Card 1: Talyer Standee Scanner -->
+                <div class="qr-card qr-card-featured">
+                    <div class="qr-card-header">
+                        <div class="qr-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                        </div>
+                        <div class="qr-card-badge">STANDEE</div>
+                    </div>
+                    <h3>Talyer Standee Scanner</h3>
+                    <p>Point your camera at the QR code on any Mobil 1 Talyer standee. Instantly opens the Engine Stress Calculator — personalized results in seconds.</p>
+                    <div class="qr-scan-area" id="qrScanArea">
+                        <div class="qr-viewfinder">
+                            <div class="qr-corner qr-tl"></div>
+                            <div class="qr-corner qr-tr"></div>
+                            <div class="qr-corner qr-bl"></div>
+                            <div class="qr-corner qr-br"></div>
+                            <div class="qr-scanline"></div>
+                            <div class="qr-scan-prompt">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                                <span>Tap to simulate scan</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-full" id="qrScanBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        Scan Talyer QR Code
+                    </button>
+                </div>
+
+                <!-- QR Card 2: Share Your Passport -->
+                <div class="qr-card">
+                    <div class="qr-card-header">
+                        <div class="qr-card-icon qr-icon-blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                        </div>
+                        <div class="qr-card-badge qr-badge-blue">SHARE</div>
+                    </div>
+                    <h3>Share Service Passport</h3>
+                    <p>Generate a QR code of your car's verified service history. Perfect for showing buyers, insurance, or your trusted mechanic.</p>
+                    <div class="qr-display" id="qrPassportDisplay">
+                        <div class="qr-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="6" y="6" width="1" height="1"/><rect x="17" y="6" width="1" height="1"/><rect x="17" y="17" width="1" height="1"/><rect x="6" y="17" width="1" height="1"/></svg>
+                            <span>Add a vehicle first to generate QR</span>
+                        </div>
+                        <canvas id="qrCanvas" width="200" height="200" style="display:none;"></canvas>
+                    </div>
+                    <div class="qr-vehicle-select" id="qrVehicleSelect" style="display:none;">
+                        <select id="qrVehiclePicker" class="qr-select"></select>
+                    </div>
+                    <button class="btn btn-outline btn-full" id="qrGenerateBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        Generate Passport QR
+                    </button>
+                </div>
+
+                <!-- QR Card 3: AR Max Verstappen -->
+                <div class="qr-card">
+                    <div class="qr-card-header">
+                        <div class="qr-card-icon qr-icon-gold">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <div class="qr-card-badge qr-badge-gold">AR</div>
+                    </div>
+                    <h3>3D Max Verstappen AR</h3>
+                    <p>Scan the special AR-enabled standee at select locations. Max Verstappen appears in 3D and walks you through Mobil 1 protection features.</p>
+                    <div class="qr-ar-preview">
+                        <div class="qr-ar-avatar">
+                            <div class="qr-ar-ring"></div>
+                            <div class="qr-ar-initials">MV</div>
+                            <div class="qr-ar-badge-3d">3D</div>
+                        </div>
+                        <div class="qr-ar-info">
+                            <div class="qr-ar-label">AR Experience</div>
+                            <div class="qr-ar-status">
+                                <span class="qr-ar-dot"></span>
+                                Available at 12 locations
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline btn-full" id="qrARBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        Launch AR Preview
+                    </button>
+                </div>
+
+                <!-- QR Card 4: Product Scan -->
+                <div class="qr-card">
+                    <div class="qr-card-header">
+                        <div class="qr-card-icon qr-icon-green">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div class="qr-card-badge qr-badge-green">VERIFY</div>
+                    </div>
+                    <h3>Verify Authentic Product</h3>
+                    <p>Scan the QR on any Mobil 1 bottle to verify authenticity, check manufacture date, and get the correct viscosity recommendation for your vehicle.</p>
+                    <div class="qr-verify-demo">
+                        <div class="qr-verify-item">
+                            <svg viewBox="0 0 20 20" fill="currentColor" style="width:16px;height:16px;color:#22c55e;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>Authentic Mobil 1™</span>
+                        </div>
+                        <div class="qr-verify-item">
+                            <svg viewBox="0 0 20 20" fill="currentColor" style="width:16px;height:16px;color:#22c55e;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>Batch: MNL-2026-0842</span>
+                        </div>
+                        <div class="qr-verify-item">
+                            <svg viewBox="0 0 20 20" fill="currentColor" style="width:16px;height:16px;color:#22c55e;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>Recommended: 5W-30</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline btn-full" id="qrVerifyBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Scan Product QR
+                    </button>
+                </div>
+            </div>
+
+            <!-- QR Location Map -->
+            <div class="qr-locations-card">
+                <div class="qr-loc-header">
+                    <div class="qr-loc-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div>
+                        <h3>Talyer Standee Locations</h3>
+                        <p>Find QR-enabled standees near you</p>
+                    </div>
+                </div>
+                <div class="qr-loc-grid">
+                    <div class="qr-loc-item">
+                        <span class="qr-loc-name">Shell EDSA Ortigas</span>
+                        <span class="qr-loc-status active">Active</span>
+                    </div>
+                    <div class="qr-loc-item">
+                        <span class="qr-loc-name">Petron C5 Taguig</span>
+                        <span class="qr-loc-status active">Active</span>
+                    </div>
+                    <div class="qr-loc-item">
+                        <span class="qr-loc-name">Caltex Makati Ave</span>
+                        <span class="qr-loc-status active">Active</span>
+                    </div>
+                    <div class="qr-loc-item">
+                        <span class="qr-loc-name">Shell Marcos Highway</span>
+                        <span class="qr-loc-status">Coming Soon</span>
+                    </div>
+                    <div class="qr-loc-item">
+                        <span class="qr-loc-name">Petron Quezon Ave</span>
+                        <span class="qr-loc-status">Coming Soon</span>
+                    </div>
+                    <div class="qr-loc-item">
+                        <span class="qr-loc-name">Caltex Alabang</span>
+                        <span class="qr-loc-status active">Active</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- REVEAL SECTION -->
     <section class="reveal-section">
         <div class="container">
@@ -919,6 +1088,7 @@
                     <a href="#pitstop">Pit Stop to EDSA</a>
                     <a href="#jargon">Jargon Translator</a>
                     <a href="#calculator">Stress Calculator</a>
+                    <a href="#qrhub">QR Experience</a>
                     <a href="#rewards">Rewards</a>
                 </div>
                 <div class="footer-links">
@@ -956,6 +1126,10 @@
         <button class="fab-option" data-action="calc-stress">
             <span class="fab-label">Calculate Stress</span>
             <div class="fab-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        </button>
+        <button class="fab-option" data-action="scan-qr">
+            <span class="fab-label">Scan QR</span>
+            <div class="fab-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
         </button>
     </div>
     <button class="app-fab" id="appFab" aria-label="Quick Actions">
