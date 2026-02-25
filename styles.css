@@ -1303,6 +1303,7 @@ img { max-width: 100%; }
     color: var(--text-muted);
     font-style: italic;
     line-height: 1.6;
+    transition: opacity 0.3s ease;
 }
 
 .narration-indicator {
@@ -1655,8 +1656,7 @@ img { max-width: 100%; }
     transition: transform 0.3s ease;
 }
 
-.hotspot-modal.active .modal-content,
-.passport-modal.active .modal-content {
+.hotspot-modal.active .modal-content {
     transform: translateY(0) scale(1);
 }
 
@@ -2653,4 +2653,677 @@ img { max-width: 100%; }
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ============================================================
+   MOBILE APP SHELL — SPLASH SCREEN
+   ============================================================ */
+.app-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.app-splash.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-content {
+    text-align: center;
+    position: relative;
+}
+
+.splash-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 130px;
+    height: 130px;
+    margin: -100px 0 0 -65px;
+    border: 2px solid transparent;
+    border-top-color: var(--red);
+    border-right-color: rgba(255,0,0,0.3);
+    border-radius: 50%;
+    animation: splash-spin 1s linear infinite;
+}
+
+@keyframes splash-spin {
+    to { transform: rotate(360deg); }
+}
+
+.splash-logo {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 20px;
+    animation: splash-breathe 2s ease-in-out infinite;
+}
+
+.splash-logo svg { height: 44px; width: auto; }
+
+@keyframes splash-breathe {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
+    50% { transform: scale(1.06); filter: drop-shadow(0 0 20px var(--red-glow)); }
+}
+
+.splash-tagline {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 6px;
+    color: var(--text-muted);
+    margin-bottom: 48px;
+}
+
+.splash-loader {
+    width: 200px;
+    height: 3px;
+    background: var(--dark-border);
+    border-radius: 2px;
+    margin: 0 auto 20px;
+    overflow: hidden;
+}
+
+.splash-loader-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--red), var(--gold));
+    border-radius: 2px;
+    animation: splash-load 2.2s ease-in-out forwards;
+}
+
+@keyframes splash-load {
+    0% { width: 0%; }
+    20% { width: 25%; }
+    50% { width: 55%; }
+    80% { width: 85%; }
+    100% { width: 100%; }
+}
+
+.splash-version {
+    font-size: 10px;
+    color: rgba(136,136,170,0.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ============================================================
+   INSTALL BANNER
+   ============================================================ */
+.install-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1002;
+    padding: 10px 16px;
+    padding-top: calc(10px + env(safe-area-inset-top, 0px));
+    background: rgba(26, 26, 46, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--dark-border);
+    display: none;
+    animation: bannerSlide 0.4s ease;
+}
+
+.install-banner.show { display: block; }
+
+@keyframes bannerSlide {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+.install-banner-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.install-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.install-app-icon svg {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.install-info strong {
+    display: block;
+    font-size: 13px;
+    color: #fff;
+}
+
+.install-info span {
+    font-size: 11px;
+    color: var(--text-muted);
+    display: block;
+}
+
+.install-btn {
+    padding: 8px 20px;
+    background: var(--red);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.install-btn:active { transform: scale(0.95); }
+
+.install-dismiss {
+    font-size: 22px;
+    color: var(--text-muted);
+    padding: 4px 4px;
+    line-height: 1;
+}
+
+/* ============================================================
+   BOTTOM NAVIGATION BAR
+   ============================================================ */
+.app-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 20, 0.96);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: none;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-shadow: 0 -4px 30px rgba(0,0,0,0.4);
+}
+
+.bottom-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 8px 2px 6px;
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: all 0.25s ease;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.bottom-tab svg {
+    width: 22px;
+    height: 22px;
+    transition: all 0.25s ease;
+}
+
+.bottom-tab.active {
+    color: #fff;
+}
+
+.bottom-tab.active svg {
+    color: var(--red);
+    transform: translateY(-2px) scale(1.1);
+    filter: drop-shadow(0 3px 8px var(--red-glow));
+}
+
+.bottom-tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 32px;
+    height: 2px;
+    background: var(--red);
+    border-radius: 0 0 2px 2px;
+    transition: transform 0.3s ease;
+}
+
+.bottom-tab.active::before {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* ============================================================
+   FLOATING ACTION BUTTON
+   ============================================================ */
+.app-fab {
+    position: fixed;
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+    right: 20px;
+    z-index: 1001;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+    color: #fff;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px var(--red-glow), 0 2px 8px rgba(0,0,0,0.3);
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.app-fab:active { transform: scale(0.9); }
+
+.app-fab.open {
+    transform: rotate(45deg);
+    border-radius: 50%;
+    background: var(--dark-surface);
+    border: 2px solid var(--red);
+    box-shadow: 0 6px 24px rgba(255,0,0,0.2);
+}
+
+.app-fab.fab-hidden {
+    transform: translateY(100px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.fab-icon-plus {
+    width: 24px;
+    height: 24px;
+}
+
+.fab-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.fab-backdrop.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.fab-menu {
+    position: fixed;
+    bottom: calc(148px + env(safe-area-inset-bottom, 0px));
+    right: 20px;
+    z-index: 1002;
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+.fab-menu.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+}
+
+.fab-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
+    opacity: 0;
+    transform: translateX(20px);
+    animation: fabItem 0.35s ease forwards;
+}
+
+.fab-option:nth-child(1) { animation-delay: 0.05s; }
+.fab-option:nth-child(2) { animation-delay: 0.1s; }
+.fab-option:nth-child(3) { animation-delay: 0.15s; }
+
+.fab-menu:not(.show) .fab-option { animation: none; opacity: 0; }
+
+@keyframes fabItem {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.fab-label {
+    padding: 8px 14px;
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.fab-opt-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--red);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    transition: all 0.2s;
+}
+
+.fab-opt-icon svg { width: 20px; height: 20px; }
+
+.fab-option:active .fab-opt-icon {
+    background: var(--red);
+    color: #fff;
+}
+
+/* ============================================================
+   TOUCH RIPPLE EFFECT
+   ============================================================ */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    transform: scale(0);
+    animation: ripple-anim 0.6s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes ripple-anim {
+    to { transform: scale(4); opacity: 0; }
+}
+
+/* ============================================================
+   PULL TO REFRESH
+   ============================================================ */
+.ptr-indicator {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-60px);
+    z-index: 100;
+    width: 40px;
+    height: 40px;
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.ptr-indicator.visible {
+    transform: translateX(-50%) translateY(80px);
+}
+
+.ptr-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--dark-border);
+    border-top-color: var(--red);
+    border-radius: 50%;
+    animation: splash-spin 0.7s linear infinite;
+}
+
+/* ============================================================
+   SECTION PAGE TRANSITION
+   ============================================================ */
+.section-transitioning {
+    animation: sectionPop 0.45s ease;
+}
+
+@keyframes sectionPop {
+    from { opacity: 0.6; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   MOBILE APP OVERRIDES (< 900px = app mode)
+   ============================================================ */
+@media (max-width: 900px) {
+    /* Show mobile app shell */
+    .app-bottom-nav { display: flex; }
+    .app-fab { display: flex; }
+    .fab-menu { display: flex; }
+
+    /* Hide desktop nav extras when bottom nav active */
+    .nav-toggle { display: none !important; }
+    .mobile-nav { display: none !important; }
+
+    /* Body padding for bottom nav */
+    body {
+        padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Scroll snap for pages feel */
+    html {
+        scroll-snap-type: y proximity;
+    }
+
+    section {
+        scroll-snap-align: start;
+    }
+
+    /* Larger touch targets (accessibility) */
+    .btn, .btn-sm, .btn-danger, .option-btn,
+    .vehicle-tab, .add-vehicle-btn, .jcat-btn,
+    .hotspot-card, .rtm-dest {
+        min-height: 44px;
+    }
+
+    /* Tighter container padding */
+    .container { padding: 0 16px; }
+
+    /* Section spacing for mobile */
+    .passport-section, .stress-section, .pitstop-section,
+    .jargon-section, .calculator-section, .rewards-section {
+        padding: 72px 0 80px;
+    }
+
+    .section-header { margin-bottom: 32px; }
+    .section-desc { font-size: 14px; }
+    .section-title { font-size: clamp(28px, 7vw, 42px); }
+
+    /* Hero mobile */
+    .hero { padding-bottom: 80px; min-height: 100vh; min-height: 100dvh; }
+    .hero-scroll-indicator { bottom: 20px; }
+    .hero-features { gap: 10px; }
+    .hero-feat { font-size: 11px; padding: 6px 10px; }
+
+    /* Narration bar mobile */
+    .narration-bar {
+        flex-direction: column;
+        text-align: center;
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .narration-indicator { justify-content: center; }
+
+    /* Car viewer mobile */
+    .car-viewer-inner { aspect-ratio: 4/3; }
+
+    /* Hotspot cards 2-col */
+    .hotspot-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+    .hotspot-card { padding: 16px 12px; gap: 10px; }
+    .hc-info h4 { font-size: 13px; }
+    .hc-info p { font-size: 10px; }
+    .hc-icon { width: 40px; height: 40px; }
+    .hc-arrow { width: 28px; height: 28px; }
+
+    /* Sound check mobile */
+    .sc-header { flex-direction: column; text-align: center; }
+
+    /* Passport stats mobile */
+    .passport-stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .ps-card { padding: 14px; }
+    .ps-value { font-size: 17px; }
+
+    /* Factor cards */
+    .factor-card { padding: 16px; }
+
+    /* Reveal stats */
+    .reveal-stats { gap: 16px; }
+    .stat-item { padding: 20px 16px; }
+    .stat-value { font-size: 42px; }
+
+    /* Footer with bottom nav space */
+    .footer { padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+
+    /* Toast moves above bottom nav */
+    .toast-container {
+        top: auto;
+        bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+        right: 16px;
+        left: 16px;
+    }
+    .toast { max-width: 100%; }
+
+    /* Card depth shadows */
+    .ps-card, .factor-card, .hotspot-card, .reward-card,
+    .calc-form, .calc-result, .roadtrip-map-card,
+    .service-progress-card, .reminders-panel, .service-log,
+    .sound-check-card {
+        box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+
+    /* ---- BOTTOM SHEET MODALS ---- */
+    .passport-modal .passport-modal-content,
+    .passport-modal .modal-content {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        border-radius: 24px 24px 0 0;
+        max-height: 92vh;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        transform: translateY(100%);
+        transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+        padding: 28px 24px calc(24px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .passport-modal.active .passport-modal-content,
+    .passport-modal.active .modal-content {
+        transform: translateY(0);
+    }
+
+    .hotspot-modal .modal-content {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        border-radius: 24px 24px 0 0;
+        max-height: 85vh;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        transform: translateY(100%);
+        transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+        padding: 28px 24px calc(24px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .hotspot-modal.active .modal-content {
+        transform: translateY(0);
+    }
+
+    /* Bottom sheet drag handle */
+    .passport-modal .passport-modal-content::before,
+    .hotspot-modal .modal-content::before {
+        content: '';
+        display: block;
+        width: 36px;
+        height: 4px;
+        background: rgba(255,255,255,0.15);
+        border-radius: 2px;
+        margin: 0 auto 20px;
+    }
+
+    /* Modal backdrop darker on mobile */
+    .modal-backdrop,
+    .passport-modal > .modal-backdrop {
+        background: rgba(0,0,0,0.65);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
+
+    /* Jargon glossary single column */
+    .jargon-glossary { grid-template-columns: 1fr; }
+
+    /* Rewards CTA spacing */
+    .rewards-cta { padding-bottom: 20px; }
+}
+
+/* Extra small screens */
+@media (max-width: 400px) {
+    .bottom-tab span { font-size: 9px; }
+    .bottom-tab svg { width: 20px; height: 20px; }
+    .bottom-tab { padding: 6px 1px 4px; }
+
+    .passport-stats { grid-template-columns: 1fr; }
+    .hotspot-cards-grid { grid-template-columns: 1fr; }
+    .hotspot-card { flex-direction: row; text-align: left; }
+    .hc-arrow { margin-left: auto; }
+
+    .heat-options, .flood-options { grid-template-columns: 1fr; }
+    .hero-feat { font-size: 10px; }
+    .app-fab { width: 50px; height: 50px; border-radius: 14px; }
+}
+
+/* Landscape phone */
+@media (max-height: 500px) and (orientation: landscape) {
+    .app-bottom-nav { padding: 2px 0; }
+    .bottom-tab { padding: 4px 2px 2px; }
+    .bottom-tab svg { width: 18px; height: 18px; }
+    .bottom-tab span { font-size: 8px; }
+    .hero { min-height: auto; padding: 40px 0; }
+    .app-fab { bottom: calc(56px + env(safe-area-inset-bottom, 0px)); width: 46px; height: 46px; }
+}
+
+/* iOS safe area top padding */
+@supports (padding-top: env(safe-area-inset-top)) {
+    @media (max-width: 900px) {
+        .navbar {
+            padding-top: calc(16px + env(safe-area-inset-top, 0px));
+        }
+        .navbar.scrolled {
+            padding-top: calc(10px + env(safe-area-inset-top, 0px));
+        }
+    }
+}
+
+/* ============================================================
+   PRESENTATION MODE — DEVICE FRAME (desktop only)
+   ============================================================ */
+@media (min-width: 1200px) {
+    .presentation-mode body {
+        max-width: 430px;
+        margin: 0 auto;
+        box-shadow: 0 0 80px rgba(0,0,0,0.5);
+        position: relative;
+    }
 }

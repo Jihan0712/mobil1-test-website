@@ -615,9 +615,11 @@ const PassportSystem = (() => {
             vehicles[activeVehicleIndex].reminders.push({ type, custom, date, notes });
             saveVehicles(vehicles);
 
+            $('#remType').value = 'Oil Change';
             $('#remDate').value = '';
             $('#remNotes').value = '';
             $('#remCustom').value = '';
+            $('#customRemGroup').style.display = 'none';
             $('#addReminderModal').classList.remove('active');
 
             renderDashboard();
@@ -770,7 +772,7 @@ function startSoundCheck() {
         statusDiv.style.color = color;
         messageDiv.textContent = message;
 
-        btn.textContent = 'Start Engine Sound Check';
+        btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg> Start Engine Sound Check`;
         btn.disabled = false;
 
         showToast(`Sound Check: ${status} (${score}/100)`, score >= 80 ? 'success' : score >= 50 ? 'warning' : 'error');
@@ -1059,4 +1061,297 @@ function updateMileTracker(stressScore) {
 
 document.addEventListener('DOMContentLoaded', () => {
     PassportSystem.init();
+    initMobileApp();
 });
+
+// ==================== MOBILE APP FEATURES ====================
+
+function initMobileApp() {
+    initSplashScreen();
+    initBottomNav();
+    initFAB();
+    initTouchRipple();
+    initPWAInstall();
+    initMobileNavHide();
+    initPullToRefresh();
+    setMobileVh();
+}
+
+// --- Viewport Height Fix (iOS address bar) ---
+function setMobileVh() {
+    function setVh() {
+        document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+    }
+    setVh();
+    window.addEventListener('resize', setVh);
+}
+
+// --- Splash Screen ---
+function initSplashScreen() {
+    const splash = $('#appSplash');
+    if (!splash) return;
+
+    function dismiss() {
+        splash.classList.add('hidden');
+        setTimeout(() => {
+            splash.remove();
+            // Show a welcome toast on first visit
+            if (!localStorage.getItem('mobil1_welcomed')) {
+                setTimeout(() => {
+                    showToast('Welcome to Mobil 1 All-in-1 Portal! 🏎️', 'success');
+                    localStorage.setItem('mobil1_welcomed', 'true');
+                }, 400);
+            }
+        }, 700);
+    }
+
+    // Dismiss after load animation completes
+    if (document.readyState === 'complete') {
+        setTimeout(dismiss, 2400);
+    } else {
+        window.addEventListener('load', () => setTimeout(dismiss, 2400));
+    }
+}
+
+// --- Bottom Navigation with Scroll Spy ---
+function initBottomNav() {
+    const tabs = $$('.bottom-tab');
+    const sectionIds = tabs.map(t => t.dataset.section);
+    let ticking = false;
+
+    function updateActive() {
+        const scrollY = window.scrollY;
+        const viewH = window.innerHeight;
+        let best = sectionIds[0];
+
+        for (const id of sectionIds) {
+            const el = document.getElementById(id);
+            if (el && el.offsetTop - viewH * 0.35 <= scrollY) {
+                best = id;
+            }
+        }
+
+        tabs.forEach(tab => {
+            tab.classList.toggle('active', tab.dataset.section === best);
+        });
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => { updateActive(); ticking = false; });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Tab clicks
+    tabs.forEach(tab => {
+        tab.addEventListener('click', e => {
+            e.preventDefault();
+            const target = document.getElementById(tab.dataset.section);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                target.classList.add('section-transitioning');
+                setTimeout(() => target.classList.remove('section-transitioning'), 500);
+            }
+
+            // Close mobile nav if open
+            const mobileNav = $('#mobileNav');
+            if (mobileNav) mobileNav.classList.remove('active');
+        });
+    });
+
+    // Initial state
+    updateActive();
+}
+
+// --- FAB Controller ---
+function initFAB() {
+    const fab = $('#appFab');
+    const menu = $('#fabMenu');
+    const backdrop = $('#fabBackdrop');
+    if (!fab || !menu) return;
+
+    let isOpen = false;
+    let lastScrollY = window.scrollY;
+
+    function toggleFAB() {
+        isOpen = !isOpen;
+        fab.classList.toggle('open', isOpen);
+        menu.classList.toggle('show', isOpen);
+        backdrop.classList.toggle('show', isOpen);
+    }
+
+    function closeFAB() {
+        if (!isOpen) return;
+        isOpen = false;
+        fab.classList.remove('open');
+        menu.classList.remove('show');
+        backdrop.classList.remove('show');
+    }
+
+    fab.addEventListener('click', toggleFAB);
+    backdrop.addEventListener('click', closeFAB);
+
+    // FAB option actions
+    $$('.fab-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+            const action = opt.dataset.action;
+            closeFAB();
+
+            switch (action) {
+                case 'add-vehicle':
+                    document.getElementById('passport')?.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => $('#addVehicleModal')?.classList.add('active'), 700);
+                    break;
+                case 'sound-check':
+                    document.getElementById('passport')?.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => {
+                        const scCard = document.querySelector('.sound-check-card');
+                        if (scCard) scCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        setTimeout(() => $('#soundCheckBtn')?.click(), 500);
+                    }, 700);
+                    break;
+                case 'calc-stress':
+                    document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
+                    break;
+            }
+        });
+    });
+
+    // Hide FAB near hero (top of page)
+    window.addEventListener('scroll', () => {
+        if (window.scrollY < 400) {
+            fab.classList.add('fab-hidden');
+        } else {
+            fab.classList.remove('fab-hidden');
+        }
+
+        // Hide FAB when scrolling down fast, show when scrolling up
+        const delta = window.scrollY - lastScrollY;
+        if (delta > 30 && !isOpen) {
+            fab.style.transition = 'all 0.3s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1)';
+        }
+        lastScrollY = window.scrollY;
+    }, { passive: true });
+}
+
+// --- Touch Ripple Effect ---
+function initTouchRipple() {
+    const mq = window.matchMedia('(max-width: 900px)');
+    if (!mq.matches) return;
+
+    const targets = '.btn, .bottom-tab, .fab-option, .option-btn, .vehicle-tab, .rtm-dest, .jcat-btn, .reward-card, .hotspot-card, .add-vehicle-btn, .btn-sm, .btn-danger';
+
+    document.addEventListener('touchstart', e => {
+        const el = e.target.closest(targets);
+        if (!el) return;
+
+        // Ensure element has proper positioning
+        const pos = getComputedStyle(el).position;
+        if (pos === 'static') el.style.position = 'relative';
+        el.style.overflow = 'hidden';
+
+        const rect = el.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height) * 2;
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.touches[0].clientX - rect.left - size / 2) + 'px';
+        ripple.style.top = (e.touches[0].clientY - rect.top - size / 2) + 'px';
+        el.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 650);
+    }, { passive: true });
+}
+
+// --- PWA Install Prompt ---
+function initPWAInstall() {
+    let deferredPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', e => {
+        e.preventDefault();
+        deferredPrompt = e;
+        const banner = $('#installBanner');
+        if (banner) banner.classList.add('show');
+    });
+
+    $('#installBtn')?.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            showToast('App installed successfully! 🎉', 'success');
+        }
+        deferredPrompt = null;
+        $('#installBanner')?.classList.remove('show');
+    });
+
+    $('#installDismiss')?.addEventListener('click', () => {
+        $('#installBanner')?.classList.remove('show');
+    });
+}
+
+// --- Auto-hide Top Navbar on Mobile Scroll ---
+function initMobileNavHide() {
+    const mq = window.matchMedia('(max-width: 900px)');
+    if (!mq.matches) return;
+
+    const navbar = $('#navbar');
+    if (!navbar) return;
+
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const curr = window.scrollY;
+        if (curr > lastScroll && curr > 120) {
+            navbar.style.transform = 'translateY(-100%)';
+        } else {
+            navbar.style.transform = 'translateY(0)';
+        }
+        lastScroll = curr;
+    }, { passive: true });
+
+    // Ensure navbar has proper transition
+    navbar.style.transition = navbar.style.transition
+        ? navbar.style.transition + ', transform 0.35s ease'
+        : 'all 0.3s ease, transform 0.35s ease';
+}
+
+// --- Pull to Refresh Simulation ---
+function initPullToRefresh() {
+    const mq = window.matchMedia('(max-width: 900px)');
+    if (!mq.matches) return;
+
+    const indicator = $('#ptrIndicator');
+    if (!indicator) return;
+
+    let startY = 0;
+    let pulling = false;
+
+    document.addEventListener('touchstart', e => {
+        if (window.scrollY < 5) {
+            startY = e.touches[0].clientY;
+            pulling = true;
+        }
+    }, { passive: true });
+
+    document.addEventListener('touchmove', e => {
+        if (!pulling) return;
+        const dy = e.touches[0].clientY - startY;
+        if (dy > 60 && window.scrollY < 5) {
+            indicator.classList.add('visible');
+        }
+    }, { passive: true });
+
+    document.addEventListener('touchend', () => {
+        if (!pulling) return;
+        pulling = false;
+
+        if (indicator.classList.contains('visible')) {
+            // Simulate refresh
+            setTimeout(() => {
+                indicator.classList.remove('visible');
+                showToast('Data refreshed ✓', 'success');
+            }, 1200);
+        }
+    }, { passive: true });
+}

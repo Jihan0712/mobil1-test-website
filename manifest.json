@@ -1,0 +1,25 @@
+{
+    "name": "Mobil 1 All-in-1 Portal",
+    "short_name": "Mobil 1",
+    "description": "Your car's complete service passport — track, protect, conquer every road.",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#0a0a14",
+    "theme_color": "#0a0a14",
+    "orientation": "portrait-primary",
+    "categories": ["auto", "lifestyle"],
+    "icons": [
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%230a0a14'/%3E%3Ctext x='60' y='340' font-family='Arial,sans-serif' font-weight='700' font-size='280' fill='%23FF0000'%3EM%3C/text%3E%3Ctext x='300' y='340' font-family='Arial,sans-serif' font-weight='700' font-size='280' fill='%23ffffff'%3E1%3C/text%3E%3C/svg%3E",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='32' fill='%230a0a14'/%3E%3Ctext x='18' y='132' font-family='Arial,sans-serif' font-weight='700' font-size='110' fill='%23FF0000'%3EM%3C/text%3E%3Ctext x='110' y='132' font-family='Arial,sans-serif' font-weight='700' font-size='110' fill='%23ffffff'%3E1%3C/text%3E%3C/svg%3E",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}

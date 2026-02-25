@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5, user-scalable=yes">
+    <meta name="theme-color" content="#0a0a14">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mobil 1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileColor" content="#0a0a14">
+    <link rel="manifest" href="manifest.json">
     <title>Mobil 1 — All-in-1 Portal | Conquer Every Road</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,6 +17,46 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- APP SPLASH SCREEN -->
+    <div class="app-splash" id="appSplash">
+        <div class="splash-content">
+            <div class="splash-ring"></div>
+            <div class="splash-logo">
+                <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="32" font-family="Oswald, sans-serif" font-weight="700" font-size="36" fill="#FF0000">Mobil</text>
+                    <text x="105" y="32" font-family="Oswald, sans-serif" font-weight="700" font-size="36" fill="#fff">1</text>
+                </svg>
+            </div>
+            <div class="splash-tagline">ALL-IN-1 PORTAL</div>
+            <div class="splash-loader"><div class="splash-loader-bar"></div></div>
+            <div class="splash-version">v2.0 — Mobile Demo</div>
+        </div>
+    </div>
+
+    <!-- INSTALL BANNER -->
+    <div class="install-banner" id="installBanner">
+        <div class="install-banner-inner">
+            <div class="install-info">
+                <div class="install-app-icon">
+                    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="#0a0a14"/>
+                        <text x="3" y="30" font-family="Oswald, sans-serif" font-weight="700" font-size="24" fill="#FF0000">M</text>
+                        <text x="22" y="30" font-family="Oswald, sans-serif" font-weight="700" font-size="24" fill="#fff">1</text>
+                    </svg>
+                </div>
+                <div>
+                    <strong>Mobil 1 Portal</strong>
+                    <span>Install app for full experience</span>
+                </div>
+            </div>
+            <button class="install-btn" id="installBtn">Install</button>
+            <button class="install-dismiss" id="installDismiss">&times;</button>
+        </div>
+    </div>
+
+    <!-- PULL TO REFRESH INDICATOR -->
+    <div class="ptr-indicator" id="ptrIndicator"><div class="ptr-spinner"></div></div>
+
     <!-- NAVIGATION -->
     <nav class="navbar" id="navbar">
         <div class="nav-inner">
@@ -894,6 +941,50 @@
             </div>
         </div>
     </footer>
+
+    <!-- FLOATING ACTION BUTTON -->
+    <div class="fab-backdrop" id="fabBackdrop"></div>
+    <div class="fab-menu" id="fabMenu">
+        <button class="fab-option" data-action="add-vehicle">
+            <span class="fab-label">Add Vehicle</span>
+            <div class="fab-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        </button>
+        <button class="fab-option" data-action="sound-check">
+            <span class="fab-label">Sound Check</span>
+            <div class="fab-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg></div>
+        </button>
+        <button class="fab-option" data-action="calc-stress">
+            <span class="fab-label">Calculate Stress</span>
+            <div class="fab-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        </button>
+    </div>
+    <button class="app-fab" id="appFab" aria-label="Quick Actions">
+        <svg class="fab-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="app-bottom-nav" id="appBottomNav">
+        <a href="#hero" class="bottom-tab" data-section="hero">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>Home</span>
+        </a>
+        <a href="#passport" class="bottom-tab active" data-section="passport">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Passport</span>
+        </a>
+        <a href="#pitstop" class="bottom-tab" data-section="pitstop">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>Pit Stop</span>
+        </a>
+        <a href="#jargon" class="bottom-tab" data-section="jargon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span>Jargon</span>
+        </a>
+        <a href="#rewards" class="bottom-tab" data-section="rewards">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Rewards</span>
+        </a>
+    </nav>
 
     <!-- NOTIFICATION TOAST -->
     <div class="toast-container" id="toastContainer"></div>
