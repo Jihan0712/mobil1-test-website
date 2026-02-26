@@ -102,27 +102,39 @@ function formatKm(n) {
 
     $$('.fade-in').forEach(el => fadeObs.observe(el));
 
-    // Counter animation for reveal stats
+    // Counter animation for reveal stats (smooth eased counting via rAF)
     const counterObs = new IntersectionObserver((entries) => {
         entries.forEach(e => {
             if (e.isIntersecting && !e.target.dataset.counted) {
                 e.target.dataset.counted = 'true';
                 const target = parseInt(e.target.dataset.count);
-                let current = 0;
-                const step = Math.max(1, Math.floor(target / 40));
-                const timer = setInterval(() => {
-                    current += step;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    e.target.textContent = current;
-                }, 40);
+                const duration = 1800;
+                const start = performance.now();
+                const ease = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3) / 2; // easeInOutCubic
+                function tick(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    e.target.textContent = Math.round(ease(progress) * target);
+                    if (progress < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
             }
         });
     }, { threshold: 0.5 });
 
     $$('.stat-value[data-count]').forEach(el => counterObs.observe(el));
+
+    // Smooth section reveal on scroll
+    const sectionObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('revealed');
+                sectionObs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+    $$('.section-reveal').forEach(el => sectionObs.observe(el));
 })();
 
 // ==================== ENGINE REVEAL (PIT STOP) ====================
@@ -155,15 +167,18 @@ function formatKm(n) {
         narrationText.textContent = narrations[narrationIndex];
     });
 
-    // Cycle narrations every 8s
+    // Add CSS transition for narration fading
+    if (narrationText) narrationText.style.transition = 'opacity 0.5s cubic-bezier(0.4,0,0.2,1)';
+
+    // Cycle narrations every 8s with smooth crossfade
     setInterval(() => {
-        if (revealed) {
+        if (revealed && narrationText) {
             narrationIndex = (narrationIndex % (narrations.length - 1)) + 1;
             narrationText.style.opacity = 0;
             setTimeout(() => {
                 narrationText.textContent = narrations[narrationIndex];
                 narrationText.style.opacity = 1;
-            }, 300);
+            }, 500);
         }
     }, 8000);
 })();
@@ -299,15 +314,31 @@ function formatKm(n) {
         else { labelEl.textContent = 'EXTREME'; labelEl.style.color = '#ef4444'; }
     }
 
-    // Initial
-    let baseVal = 78;
-    updateGauge(baseVal);
+    // Smoothly animate gauge value with easing
+    let currentDisplay = 78;
+    let targetVal = 78;
+    updateGauge(currentDisplay);
 
-    // Random fluctuation
+    function animateGaugeTo(newTarget) {
+        targetVal = newTarget;
+        const startVal = currentDisplay;
+        const duration = 1200;
+        const start = performance.now();
+        function tick(now) {
+            const t = Math.min((now - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - t, 3); // easeOutCubic
+            currentDisplay = Math.round(startVal + (targetVal - startVal) * ease);
+            updateGauge(currentDisplay);
+            if (t < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    }
+
+    // Random fluctuation with smooth transition
     setInterval(() => {
         const delta = Math.round((Math.random() - 0.5) * 8);
-        baseVal = Math.max(0, Math.min(100, baseVal + delta));
-        updateGauge(baseVal);
+        const next = Math.max(0, Math.min(100, targetVal + delta));
+        animateGaugeTo(next);
     }, 3000);
 })();
 
@@ -563,7 +594,6 @@ const PassportSystem = (() => {
                 plate, name, mileage, lastOil, interval,
                 services: [],
                 reminders: [],
-                soundCheckHistory: []
             });
             saveVehicles(vehicles);
             activeVehicleIndex = vehicles.length - 1;
@@ -690,171 +720,10 @@ const PassportSystem = (() => {
             }
         });
 
-        // Sound Check
-        $('#soundCheckBtn')?.addEventListener('click', startSoundCheck);
     }
 
     return { init };
 })();
-
-// ==================== 1 SOUND CHECK ====================
-
-function startSoundCheck() {
-    const canvas = $('#soundCanvas');
-    const ctx = canvas.getContext('2d');
-    const resultDiv = $('#soundResult');
-    const scoreDiv = $('#soundScore');
-    const statusDiv = $('#soundStatus');
-    const messageDiv = $('#soundMessage');
-    const btn = $('#soundCheckBtn');
-
-    btn.textContent = '🎤 Listening... (5 seconds)';
-    btn.disabled = true;
-    resultDiv.style.display = 'none';
-
-    // Try real microphone; fallback to simulation
-    let audioCtx, analyser, dataArray, source, animId;
-    let samples = [];
-
-    function drawWaveform() {
-        if (!analyser) return;
-        analyser.getByteTimeDomainData(dataArray);
-        ctx.fillStyle = '#0a0a14';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = '#ff3333';
-        ctx.beginPath();
-        const sliceW = canvas.width / dataArray.length;
-        let x = 0;
-        for (let i = 0; i < dataArray.length; i++) {
-            const y = (dataArray[i] / 128.0) * (canvas.height / 2);
-            i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-            x += sliceW;
-        }
-        ctx.lineTo(canvas.width, canvas.height / 2);
-        ctx.stroke();
-
-        // Collect RMS samples
-        let sum = 0;
-        for (let i = 0; i < dataArray.length; i++) {
-            const v = (dataArray[i] - 128) / 128;
-            sum += v * v;
-        }
-        samples.push(Math.sqrt(sum / dataArray.length));
-
-        animId = requestAnimationFrame(drawWaveform);
-    }
-
-    function finishCheck() {
-        cancelAnimationFrame(animId);
-        if (source && source.disconnect) source.disconnect();
-        if (audioCtx) audioCtx.close();
-
-        // Analyze
-        const avgRMS = samples.reduce((a, b) => a + b, 0) / (samples.length || 1);
-        const score = Math.min(100, Math.round((1 - avgRMS * 3) * 100));
-
-        let status, color, message;
-        if (score >= 80) {
-            status = 'HEALTHY'; color = '#22c55e';
-            message = 'Your engine sounds smooth! Keep up the regular Mobil 1 oil changes.';
-        } else if (score >= 50) {
-            status = 'MODERATE'; color = '#f97316';
-            message = 'Some irregularities detected. Consider scheduling a check-up and switching to Mobil 1 full synthetic.';
-        } else {
-            status = 'NEEDS ATTENTION'; color = '#ef4444';
-            message = 'Unusual engine sounds detected. We strongly recommend a professional inspection and Mobil 1 protection.';
-        }
-
-        resultDiv.style.display = 'block';
-        scoreDiv.textContent = score + '/100';
-        statusDiv.textContent = status;
-        statusDiv.style.color = color;
-        messageDiv.textContent = message;
-
-        btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg> Start Engine Sound Check`;
-        btn.disabled = false;
-
-        showToast(`Sound Check: ${status} (${score}/100)`, score >= 80 ? 'success' : score >= 50 ? 'warning' : 'error');
-    }
-
-    // Attempt microphone access
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-            .then(stream => {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                analyser = audioCtx.createAnalyser();
-                analyser.fftSize = 2048;
-                dataArray = new Uint8Array(analyser.fftSize);
-                source = audioCtx.createMediaStreamSource(stream);
-                source.connect(analyser);
-                drawWaveform();
-                setTimeout(() => {
-                    stream.getTracks().forEach(t => t.stop());
-                    finishCheck();
-                }, 5000);
-            })
-            .catch(() => {
-                runSimulatedSoundCheck(ctx, canvas, resultDiv, scoreDiv, statusDiv, messageDiv, btn);
-            });
-    } else {
-        runSimulatedSoundCheck(ctx, canvas, resultDiv, scoreDiv, statusDiv, messageDiv, btn);
-    }
-}
-
-function runSimulatedSoundCheck(ctx, canvas, resultDiv, scoreDiv, statusDiv, messageDiv, btn) {
-    let frame = 0;
-    const totalFrames = 150; // ~5 seconds at 30fps
-
-    function drawSim() {
-        ctx.fillStyle = '#0a0a14';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.strokeStyle = '#ff3333';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-
-        for (let x = 0; x < canvas.width; x++) {
-            const noise = Math.sin(x * 0.05 + frame * 0.1) * 20 +
-                          Math.sin(x * 0.02 + frame * 0.15) * 15 +
-                          (Math.random() - 0.5) * 10;
-            const y = canvas.height / 2 + noise;
-            x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-        }
-        ctx.stroke();
-        frame++;
-
-        if (frame < totalFrames) {
-            requestAnimationFrame(drawSim);
-        } else {
-            // Simulated result
-            const score = 60 + Math.round(Math.random() * 30);
-            let status, color, message;
-            if (score >= 80) {
-                status = 'HEALTHY'; color = '#22c55e';
-                message = 'Your engine sounds smooth! Keep up the regular Mobil 1 oil changes.';
-            } else if (score >= 60) {
-                status = 'MODERATE'; color = '#f97316';
-                message = 'Minor irregularities — consider Mobil 1 full synthetic for better protection.';
-            } else {
-                status = 'NEEDS ATTENTION'; color = '#ef4444';
-                message = 'Unusual sounds detected. Professional inspection recommended.';
-            }
-
-            resultDiv.style.display = 'block';
-            scoreDiv.textContent = score + '/100';
-            statusDiv.textContent = status;
-            statusDiv.style.color = color;
-            messageDiv.textContent = message;
-
-            btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg> Start Engine Sound Check`;
-            btn.disabled = false;
-
-            showToast(`Sound Check: ${status} (${score}/100) — Simulated`, score >= 80 ? 'success' : 'warning');
-        }
-    }
-
-    drawSim();
-}
 
 // ==================== JARGON TRANSLATOR ====================
 
@@ -1458,14 +1327,6 @@ function initFAB() {
                     document.getElementById('passport')?.scrollIntoView({ behavior: 'smooth' });
                     setTimeout(() => $('#addVehicleModal')?.classList.add('active'), 700);
                     break;
-                case 'sound-check':
-                    document.getElementById('passport')?.scrollIntoView({ behavior: 'smooth' });
-                    setTimeout(() => {
-                        const scCard = document.querySelector('.sound-check-card');
-                        if (scCard) scCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        setTimeout(() => $('#soundCheckBtn')?.click(), 500);
-                    }, 700);
-                    break;
                 case 'calc-stress':
                     document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
                     break;
@@ -1568,11 +1429,6 @@ function initMobileNavHide() {
         }
         lastScroll = curr;
     }, { passive: true });
-
-    // Ensure navbar has proper transition
-    navbar.style.transition = navbar.style.transition
-        ? navbar.style.transition + ', transform 0.35s ease'
-        : 'all 0.3s ease, transform 0.35s ease';
 }
 
 // --- Pull to Refresh Simulation ---
