@@ -10,26 +10,78 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="msapplication-TileColor" content="#0a0a14">
     <link rel="manifest" href="manifest.json">
-    <title>Mobil 1 — All-in-1 Portal | Conquer Every Road</title>
+    <title>Mobil 1 &mdash; All-in-1 Portal | Conquer Every Road</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- ==================== START PAGE ==================== -->
+    <div class="start-page" id="startPage">
+        <!-- 3D TUNNEL SCENE -->
+        <div class="tunnel-scene">
+            <div class="tunnel-box">
+                <!-- CEILING -->
+                <div class="tunnel-face tunnel-ceil">
+                    <span>PROTECT</span><span>PREVENT</span><span>PROOF</span><span>PROTECT</span><span>PREVENT</span><span>CARE</span>
+                </div>
+                <!-- FLOOR -->
+                <div class="tunnel-face tunnel-floor">
+                    <span>STANDARD</span><span>EXTREME</span><span>PROOF</span><span>CARE</span><span>PROTECT</span>
+                </div>
+                <!-- LEFT WALL -->
+                <div class="tunnel-face tunnel-left">
+                    <span>PROOF</span><span>CERTIFICATION</span><span>EXTREME</span><span>PRIORITY</span>
+                </div>
+                <!-- RIGHT WALL -->
+                <div class="tunnel-face tunnel-right">
+                    <span>STANDARD</span><span>DISCIPLINE</span><span>CARE</span><span>HAPPY</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIGNETTE / DEPTH OVERLAY -->
+        <div class="tunnel-overlay"></div>
+
+        <!-- CENTER CONTENT -->
+        <div class="start-center">
+            <div class="start-logo">
+                <svg viewBox="0 0 260 50" xmlns="http://www.w3.org/2000/svg" class="start-mobil-svg">
+                    <text x="0" y="40" font-family="Oswald, sans-serif" font-weight="700" font-size="44" fill="#fff">M</text>
+                    <text x="32" y="40" font-family="Oswald, sans-serif" font-weight="700" font-size="44" fill="#fff">o</text>
+                    <circle cx="49" cy="30" r="6" fill="#da3739"/>
+                    <text x="62" y="40" font-family="Oswald, sans-serif" font-weight="700" font-size="44" fill="#fff">bil</text>
+                </svg>
+                <div class="start-allin">ALL-IN</div>
+            </div>
+            <div class="start-one-card">
+                <span class="start-one">1</span>
+            </div>
+        </div>
+
+        <div class="start-bottom">
+            <button class="start-btn" id="startBtn">GET STARTED</button>
+            <div class="start-terms">
+                By Continuing, I accept the <a href="#">Terms and Conditions</a><br>
+                Please refer to your <a href="#">Privacy Notice</a>
+            </div>
+        </div>
+    </div>
+
     <!-- APP SPLASH SCREEN -->
     <div class="app-splash" id="appSplash">
         <div class="splash-content">
             <div class="splash-ring"></div>
             <div class="splash-logo">
                 <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
-                    <text x="0" y="32" font-family="Oswald, sans-serif" font-weight="700" font-size="36" fill="#FF0000">Mobil</text>
+                    <text x="0" y="32" font-family="Oswald, sans-serif" font-weight="700" font-size="36" fill="#da3739">Mobil</text>
                     <text x="105" y="32" font-family="Oswald, sans-serif" font-weight="700" font-size="36" fill="#fff">1</text>
                 </svg>
             </div>
             <div class="splash-tagline">ALL-IN-1 PORTAL</div>
             <div class="splash-loader"><div class="splash-loader-bar"></div></div>
-            <div class="splash-version">v2.0 — Mobile Demo</div>
+            <div class="splash-version">v3.0 &mdash; Mobile Demo</div>
         </div>
     </div>
 
@@ -40,7 +92,7 @@
                 <div class="install-app-icon">
                     <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
                         <rect width="40" height="40" rx="8" fill="#0a0a14"/>
-                        <text x="3" y="30" font-family="Oswald, sans-serif" font-weight="700" font-size="24" fill="#FF0000">M</text>
+                        <text x="3" y="30" font-family="Oswald, sans-serif" font-weight="700" font-size="24" fill="#da3739">M</text>
                         <text x="22" y="30" font-family="Oswald, sans-serif" font-weight="700" font-size="24" fill="#fff">1</text>
                     </svg>
                 </div>
@@ -62,18 +114,19 @@
         <div class="nav-inner">
             <div class="nav-logo">
                 <svg class="mobil-logo" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
-                    <text x="0" y="32" font-family="Oswald, sans-serif" font-weight="700" font-size="36" fill="#FF0000">Mobil</text>
-                    <text x="105" y="32" font-family="Oswald, sans-serif" font-weight="700" font-size="36" fill="#002F6C">1</text>
+                    <text x="0" y="32" font-family="Oswald, sans-serif" font-weight="700" font-size="36" fill="#da3739">Mobil</text>
+                    <text x="105" y="32" font-family="Oswald, sans-serif" font-weight="700" font-size="36" fill="#2b65ae">1</text>
                 </svg>
             </div>
             <div class="nav-links">
-                <a href="#passport">Service Passport</a>
-                <a href="#stress">Extreme Index</a>
-                <a href="#pitstop">Pit Stop</a>
-                <a href="#jargon">Jargon Translator</a>
-                <a href="#qrhub">QR Experience</a>
-                <a href="#calculator">Stress Calculator</a>
-                <a href="#rewards">Rewards</a>
+                <a href="#servicelog">Service Log</a>
+                <a href="#garage">Garage</a>
+                <a href="#calendar">Calendar</a>
+                <a href="#talktomax">Talk to Max</a>
+                <a href="#odyssey">Odyssey</a>
+                <a href="#stamps">Stamps</a>
+                <a href="#extremeindex">Extreme Index</a>
+                <a href="#forum">Forum</a>
             </div>
             <button class="nav-toggle" id="navToggle" aria-label="Menu">
                 <span></span><span></span><span></span>
@@ -83,13 +136,14 @@
 
     <!-- MOBILE NAV -->
     <div class="mobile-nav" id="mobileNav">
-        <a href="#passport">Service Passport</a>
-        <a href="#stress">Extreme Index</a>
-        <a href="#pitstop">Pit Stop</a>
-        <a href="#jargon">Jargon Translator</a>
-        <a href="#qrhub">QR Experience</a>
-        <a href="#calculator">Stress Calculator</a>
-        <a href="#rewards">Rewards</a>
+        <a href="#servicelog">Service Log</a>
+        <a href="#garage">Garage</a>
+        <a href="#calendar">Calendar</a>
+        <a href="#talktomax">Talk to Max</a>
+        <a href="#odyssey">Odyssey</a>
+        <a href="#stamps">Stamps</a>
+        <a href="#extremeindex">Extreme Index</a>
+        <a href="#forum">Forum</a>
     </div>
 
     <!-- HERO SECTION -->
@@ -102,20 +156,20 @@
                 MOBIL ALL-IN-1 PORTAL
             </div>
             <h1 class="hero-title">
-                <span class="title-line">Your car's complete</span>
-                <span class="title-line accent">SERVICE PASSPORT</span>
+                <span class="title-line">Your car&rsquo;s complete</span>
+                <span class="title-line accent">ALL-IN-1 HUB</span>
                 <span class="title-line small">Track. Protect. Conquer every road.</span>
             </h1>
-            <p class="hero-subtitle">From racetracks to rush hour — documented proof of disciplined ownership.</p>
+            <p class="hero-subtitle">8 powerful features in one portal &mdash; from service logs to community forum.</p>
             <div class="hero-cta">
-                <a href="#passport" class="btn btn-primary">Open Service Passport</a>
-                <a href="#calculator" class="btn btn-outline">Check Engine Stress</a>
+                <a href="#garage" class="btn btn-primary">Open My Garage</a>
+                <a href="#talktomax" class="btn btn-outline">Talk to Max</a>
             </div>
             <div class="hero-features">
-                <div class="hero-feat"><span class="hf-icon">&#9881;</span> Multi-Car Tracker</div>
-                <div class="hero-feat"><span class="hf-icon">&#128276;</span> Smart Reminders</div>
-                <div class="hero-feat"><span class="hf-icon">&#127942;</span> Extreme Rewards</div>
-                <div class="hero-feat"><span class="hf-icon">&#128218;</span> Service History</div>
+                <div class="hero-feat"><span class="hf-icon">&#128218;</span> Service Log</div>
+                <div class="hero-feat"><span class="hf-icon">&#128663;</span> Multi-Vehicle</div>
+                <div class="hero-feat"><span class="hf-icon">&#128197;</span> Smart Calendar</div>
+                <div class="hero-feat"><span class="hf-icon">&#127942;</span> Odyssey Rewards</div>
             </div>
         </div>
         <div class="hero-scroll-indicator">
@@ -124,18 +178,97 @@
         </div>
     </section>
 
-    <!-- ==================== SERVICE PASSPORT SECTION ==================== -->
-    <section class="passport-section section-reveal" id="passport">
+    <!-- ==================== 1. SERVICE LOG HISTORY ==================== -->
+    <section class="section-block section-reveal" id="servicelog">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Digital Service Passport</span>
-                <h2 class="section-title">Your Car's <span class="text-red">Health Record</span></h2>
-                <p class="section-desc">Every Mobil 1 oil change logged under your plate number. A verified service history, predictive calendar, and timely reminders — not just a tracker, but documented proof of disciplined ownership.</p>
+                <span class="section-tag">Feature 01</span>
+                <h2 class="section-title">Service Log <span class="text-red">History</span></h2>
+                <p class="section-desc">A complete log history of every time you topped up with Mobil 1. Every oil change, every filter swap &mdash; digitally recorded, verified, and always accessible.</p>
             </div>
 
-            <!-- Vehicle Selector -->
-            <div class="vehicle-selector">
-                <div class="vehicle-tabs" id="vehicleTabs"></div>
+            <div class="log-controls">
+                <button class="btn btn-primary" id="addLogEntryBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Log New Service
+                </button>
+                <div class="log-filter-group">
+                    <button class="log-filter active" data-filter="all">All</button>
+                    <button class="log-filter" data-filter="oil">Oil Changes</button>
+                    <button class="log-filter" data-filter="maintenance">Maintenance</button>
+                </div>
+            </div>
+
+            <!-- Add Log Modal -->
+            <div class="modal-overlay" id="addLogModal">
+                <div class="modal-backdrop modal-close-trigger"></div>
+                <div class="modal-panel">
+                    <button class="modal-close modal-close-trigger">&times;</button>
+                    <h3>Log Mobil 1 Service</h3>
+                    <div class="form-stack">
+                        <div class="form-field">
+                            <label>Service Type</label>
+                            <select id="logType">
+                                <option value="Oil Change — Mobil 1™ 0W-20">Oil Change — Mobil 1™ 0W-20</option>
+                                <option value="Oil Change — Mobil 1™ 5W-30">Oil Change — Mobil 1™ 5W-30</option>
+                                <option value="Oil Change — Mobil 1™ 5W-40">Oil Change — Mobil 1™ 5W-40</option>
+                                <option value="Oil Change — Mobil Super™">Oil Change — Mobil Super™</option>
+                                <option value="Tire Rotation">Tire Rotation</option>
+                                <option value="Brake Service">Brake Service</option>
+                                <option value="Battery Replacement">Battery Replacement</option>
+                                <option value="Coolant Flush">Coolant Flush</option>
+                                <option value="Full PMS">Full PMS</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label>Vehicle</label>
+                            <select id="logVehicle"></select>
+                        </div>
+                        <div class="form-field">
+                            <label>Date</label>
+                            <input type="date" id="logDate">
+                        </div>
+                        <div class="form-field">
+                            <label>Mileage (km)</label>
+                            <input type="number" id="logMileage" placeholder="e.g. 50000" min="0">
+                        </div>
+                        <div class="form-field">
+                            <label>Shop / Location</label>
+                            <input type="text" id="logShop" placeholder="e.g. Shell EDSA Ortigas">
+                        </div>
+                        <div class="form-field">
+                            <label>Notes</label>
+                            <input type="text" id="logNotes" placeholder="e.g. Engine running smooth">
+                        </div>
+                        <button class="btn btn-primary btn-full" id="saveLogBtn">Save Entry</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="log-timeline" id="logTimeline">
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <h3>No service entries yet</h3>
+                    <p>Add a vehicle in your Garage first, then log your Mobil 1 services here.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 2. MULTI-VEHICLE MANAGEMENT ==================== -->
+    <section class="section-block section-reveal" id="garage">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Feature 02</span>
+                <h2 class="section-title">Multi-Vehicle <span class="text-red">Garage</span></h2>
+                <p class="section-desc">A digital garage to monitor the health of every vehicle in your arsenal. Add multiple cars, track each one individually, and stay on top of every engine.</p>
+            </div>
+
+            <div class="garage-selector">
+                <div class="garage-tabs" id="garageTabs"></div>
                 <button class="add-vehicle-btn" id="addVehicleBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                     Add Vehicle
@@ -143,36 +276,36 @@
             </div>
 
             <!-- Add Vehicle Modal -->
-            <div class="passport-modal" id="addVehicleModal">
-                <div class="modal-backdrop pmodal-backdrop"></div>
-                <div class="modal-content passport-modal-content">
-                    <button class="modal-close pmodal-close">&times;</button>
+            <div class="modal-overlay" id="addVehicleModal">
+                <div class="modal-backdrop modal-close-trigger"></div>
+                <div class="modal-panel">
+                    <button class="modal-close modal-close-trigger">&times;</button>
                     <h3>Register New Vehicle</h3>
-                    <div class="passport-form">
-                        <div class="pf-group">
+                    <div class="form-stack">
+                        <div class="form-field">
                             <label>Plate Number</label>
                             <input type="text" id="vehPlate" placeholder="e.g. ABC 1234" maxlength="10">
                         </div>
-                        <div class="pf-group">
+                        <div class="form-field">
                             <label>Vehicle Name</label>
                             <input type="text" id="vehName" placeholder="e.g. Toyota Vios 2022">
                         </div>
-                        <div class="pf-group">
-                            <label>Engine Age (km)</label>
+                        <div class="form-field">
+                            <label>Current Mileage (km)</label>
                             <input type="number" id="vehMileage" placeholder="e.g. 45000" min="0">
                         </div>
-                        <div class="pf-group">
+                        <div class="form-field">
                             <label>Last Oil Change Date</label>
                             <input type="date" id="vehLastOil">
                         </div>
-                        <div class="pf-group">
-                            <label>Oil Change Interval (km)</label>
+                        <div class="form-field">
+                            <label>Oil Change Interval</label>
                             <select id="vehInterval">
                                 <option value="5000">Every 5,000 km</option>
                                 <option value="7500">Every 7,500 km</option>
                                 <option value="10000" selected>Every 10,000 km</option>
                                 <option value="15000">Every 15,000 km</option>
-                                <option value="20000">Every 20,000 km (Mobil 1&trade;)</option>
+                                <option value="20000">Every 20,000 km (Mobil 1™)</option>
                             </select>
                         </div>
                         <button class="btn btn-primary btn-full" id="saveVehicleBtn">Save Vehicle</button>
@@ -180,867 +313,511 @@
                 </div>
             </div>
 
-            <!-- Passport Dashboard -->
-            <div class="passport-dashboard" id="passportDashboard">
-                <!-- Empty state -->
-                <div class="passport-empty" id="passportEmpty">
+            <!-- Garage Dashboard -->
+            <div class="garage-dashboard" id="garageDashboard">
+                <div class="empty-state" id="garageEmpty">
                     <div class="empty-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
                     </div>
-                    <h3>No vehicles registered yet</h3>
-                    <p>Add your first vehicle to start building a verified service history.</p>
+                    <h3>Your garage is empty</h3>
+                    <p>Add your first vehicle to start monitoring its health.</p>
                 </div>
 
-                <!-- Vehicle Dashboard -->
-                <div class="passport-vehicle-view" id="passportVehicleView" style="display:none;">
-                    <div class="passport-stats">
-                        <div class="ps-card">
-                            <div class="ps-icon blue">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                            </div>
-                            <div class="ps-info">
-                                <span class="ps-label">Health Score</span>
-                                <span class="ps-value" id="psHealthScore">--</span>
-                            </div>
+                <div class="garage-vehicle-view" id="garageVehicleView" style="display:none;">
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                            <div class="stat-info"><span class="stat-label">Health Score</span><span class="stat-val" id="gHealthScore">--</span></div>
                         </div>
-                        <div class="ps-card">
-                            <div class="ps-icon gold">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                            </div>
-                            <div class="ps-info">
-                                <span class="ps-label">Engine Age</span>
-                                <span class="ps-value" id="psEngineAge">--</span>
-                            </div>
+                        <div class="stat-card">
+                            <div class="stat-icon gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                            <div class="stat-info"><span class="stat-label">Mileage</span><span class="stat-val" id="gMileage">--</span></div>
                         </div>
-                        <div class="ps-card">
-                            <div class="ps-icon green">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
-                            </div>
-                            <div class="ps-info">
-                                <span class="ps-label">Last Oil Change</span>
-                                <span class="ps-value" id="psLastOil">--</span>
-                            </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
+                            <div class="stat-info"><span class="stat-label">Last Oil Change</span><span class="stat-val" id="gLastOil">--</span></div>
                         </div>
-                        <div class="ps-card">
-                            <div class="ps-icon red">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                            </div>
-                            <div class="ps-info">
-                                <span class="ps-label">Next Service</span>
-                                <span class="ps-value" id="psNextService">--</span>
-                            </div>
+                        <div class="stat-card">
+                            <div class="stat-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                            <div class="stat-info"><span class="stat-label">Next Service</span><span class="stat-val" id="gNextService">--</span></div>
                         </div>
                     </div>
 
-                    <!-- Oil Life Progress -->
-                    <div class="service-progress-card">
+                    <div class="card-panel">
                         <h4>Oil Life Remaining</h4>
-                        <div class="service-progress-bar">
-                            <div class="spb-fill" id="oilLifeFill"></div>
-                        </div>
-                        <div class="spb-labels">
-                            <span id="oilLifeText">--</span>
-                            <span id="oilLifeKm">-- km remaining</span>
-                        </div>
+                        <div class="progress-bar"><div class="progress-fill" id="gOilFill"></div></div>
+                        <div class="progress-labels"><span id="gOilText">--</span><span id="gOilKm">-- km remaining</span></div>
                     </div>
 
-                    <!-- Reminders Panel -->
-                    <div class="reminders-panel">
-                        <div class="reminders-header">
+                    <div class="card-panel">
+                        <h4>Vehicle Summary</h4>
+                        <div class="summary-row"><span>Total Services Logged</span><strong id="gServiceCount">0</strong></div>
+                        <div class="summary-row"><span>Active Reminders</span><strong id="gReminderCount">0</strong></div>
+                    </div>
+
+                    <div class="delete-area">
+                        <button class="btn-danger" id="deleteVehicleBtn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+                            Remove Vehicle
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3. PREDICTIVE SERVICE CALENDAR ==================== -->
+    <section class="section-block section-reveal" id="calendar">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Feature 03</span>
+                <h2 class="section-title">Predictive Service <span class="text-red">Calendar</span></h2>
+                <p class="section-desc">A smart calendar that anticipates your next oil change based on driving patterns, mileage intervals, and time since last service.</p>
+            </div>
+
+            <div class="calendar-layout">
+                <div class="calendar-widget">
+                    <div class="cal-header">
+                        <button class="cal-nav" id="calPrev">&larr;</button>
+                        <h4 id="calMonthYear">February 2026</h4>
+                        <button class="cal-nav" id="calNext">&rarr;</button>
+                    </div>
+                    <div class="cal-days-header">
+                        <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                    </div>
+                    <div class="cal-grid" id="calGrid"></div>
+                    <div class="cal-legend">
+                        <span class="cal-leg-item"><span class="cal-dot cal-dot-red"></span> Oil Change Due</span>
+                        <span class="cal-leg-item"><span class="cal-dot cal-dot-blue"></span> Scheduled</span>
+                        <span class="cal-leg-item"><span class="cal-dot cal-dot-green"></span> Completed</span>
+                    </div>
+                </div>
+
+                <div class="calendar-sidebar">
+                    <div class="cal-prediction-card">
+                        <div class="cal-pred-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <h4>Next Predicted Service</h4>
+                        <div class="cal-pred-date" id="calPredDate">--</div>
+                        <div class="cal-pred-detail" id="calPredDetail">Add a vehicle to see predictions</div>
+                    </div>
+
+                    <div class="cal-reminders-card">
+                        <div class="cal-rem-header">
                             <h4>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-                                Upcoming Reminders &amp; Dues
+                                Reminders
                             </h4>
-                            <button class="btn-sm" id="addReminderBtn">+ Add Reminder</button>
+                            <button class="btn-sm" id="addReminderBtn">+ Add</button>
                         </div>
-                        <div class="reminders-list" id="remindersList"></div>
+                        <div class="cal-rem-list" id="calRemindersList">
+                            <div class="cal-rem-empty">No reminders set yet.</div>
+                        </div>
                     </div>
 
                     <!-- Add Reminder Modal -->
-                    <div class="passport-modal" id="addReminderModal">
-                        <div class="modal-backdrop pmodal-backdrop"></div>
-                        <div class="modal-content passport-modal-content">
-                            <button class="modal-close pmodal-close">&times;</button>
-                            <h3>Set Reminder</h3>
-                            <div class="passport-form">
-                                <div class="pf-group">
-                                    <label>Reminder Type</label>
+                    <div class="modal-overlay" id="addReminderModal">
+                        <div class="modal-backdrop modal-close-trigger"></div>
+                        <div class="modal-panel">
+                            <button class="modal-close modal-close-trigger">&times;</button>
+                            <h3>Add Reminder</h3>
+                            <div class="form-stack">
+                                <div class="form-field">
+                                    <label>Type</label>
                                     <select id="remType">
                                         <option value="Oil Change">Oil Change</option>
                                         <option value="Tire Rotation">Tire Rotation</option>
                                         <option value="Brake Inspection">Brake Inspection</option>
                                         <option value="Battery Check">Battery Check</option>
-                                        <option value="Air Filter">Air Filter Replacement</option>
-                                        <option value="Coolant Flush">Coolant Flush</option>
-                                        <option value="LTO Registration">LTO Registration Renewal</option>
+                                        <option value="PMS">Preventive Maintenance</option>
+                                        <option value="LTO Registration">LTO Registration</option>
                                         <option value="Insurance">Insurance Renewal</option>
-                                        <option value="Emission Test">Emission Test</option>
-                                        <option value="PMS">Preventive Maintenance Service</option>
                                         <option value="Custom">Custom</option>
                                     </select>
                                 </div>
-                                <div class="pf-group" id="customRemGroup" style="display:none;">
-                                    <label>Custom Reminder</label>
-                                    <input type="text" id="remCustom" placeholder="e.g. Timing belt replacement">
+                                <div class="form-field" id="customRemField" style="display:none;">
+                                    <label>Custom Text</label>
+                                    <input type="text" id="remCustom" placeholder="e.g. Timing belt">
                                 </div>
-                                <div class="pf-group">
+                                <div class="form-field">
                                     <label>Due Date</label>
                                     <input type="date" id="remDate">
                                 </div>
-                                <div class="pf-group">
-                                    <label>Notes (optional)</label>
-                                    <input type="text" id="remNotes" placeholder="e.g. Use Mobil 1 5W-30">
+                                <div class="form-field">
+                                    <label>Vehicle</label>
+                                    <select id="remVehicle"></select>
                                 </div>
                                 <button class="btn btn-primary btn-full" id="saveReminderBtn">Save Reminder</button>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Service History Log -->
-                    <div class="service-log">
-                        <div class="service-log-header">
-                            <h4>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                                Verified Service History
-                            </h4>
-                            <button class="btn-sm" id="addServiceBtn">+ Log Service</button>
-                        </div>
-                        <div class="service-timeline" id="serviceTimeline"></div>
-                    </div>
-
-                    <!-- Add Service Modal -->
-                    <div class="passport-modal" id="addServiceModal">
-                        <div class="modal-backdrop pmodal-backdrop"></div>
-                        <div class="modal-content passport-modal-content">
-                            <button class="modal-close pmodal-close">&times;</button>
-                            <h3>Log Service Entry</h3>
-                            <div class="passport-form">
-                                <div class="pf-group">
-                                    <label>Service Type</label>
-                                    <select id="svcType">
-                                        <option value="Oil Change — Mobil 1™ 0W-20">Oil Change — Mobil 1&trade; 0W-20</option>
-                                        <option value="Oil Change — Mobil 1™ 5W-30">Oil Change — Mobil 1&trade; 5W-30</option>
-                                        <option value="Oil Change — Mobil 1™ 5W-40">Oil Change — Mobil 1&trade; 5W-40</option>
-                                        <option value="Oil Change — Mobil Super™">Oil Change — Mobil Super&trade;</option>
-                                        <option value="Tire Rotation">Tire Rotation</option>
-                                        <option value="Brake Service">Brake Service</option>
-                                        <option value="Battery Replacement">Battery Replacement</option>
-                                        <option value="Air Filter">Air Filter Replacement</option>
-                                        <option value="Coolant Flush">Coolant Flush</option>
-                                        <option value="Full PMS">Full PMS</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
-                                <div class="pf-group">
-                                    <label>Date of Service</label>
-                                    <input type="date" id="svcDate">
-                                </div>
-                                <div class="pf-group">
-                                    <label>Mileage at Service (km)</label>
-                                    <input type="number" id="svcMileage" placeholder="e.g. 50000" min="0">
-                                </div>
-                                <div class="pf-group">
-                                    <label>Shop / Mechanic</label>
-                                    <input type="text" id="svcShop" placeholder="e.g. Shell EDSA Ortigas">
-                                </div>
-                                <div class="pf-group">
-                                    <label>Notes</label>
-                                    <input type="text" id="svcNotes" placeholder="e.g. Engine running smooth">
-                                </div>
-                                <button class="btn btn-primary btn-full" id="saveServiceBtn">Log Service</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Delete Vehicle -->
-                    <div class="delete-vehicle-area">
-                        <button class="btn-danger" id="deleteVehicleBtn">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
-                            Remove This Vehicle
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== LIVE ENGINE STRESS / EXTREME INDEX ==================== -->
-    <section class="stress-section section-reveal" id="stress">
+    <!-- ==================== 4. TALK TO MAX ==================== -->
+    <section class="section-block section-reveal" id="talktomax">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Mobil 1 Extreme Index</span>
-                <h2 class="section-title">Live Engine <span class="text-red">Stress Level</span></h2>
-                <p class="section-desc">A live engine strain system that measures how harsh everyday Philippine driving really is — combining publicly available data to calculate real-time Engine Stress Level. Displayed across digital OOH, website, and mobile.</p>
+                <span class="section-tag">Feature 04</span>
+                <h2 class="section-title">Talk to <span class="text-red">Max</span></h2>
+                <p class="section-desc">An interactive AI assistant powered by Max Verstappen&rsquo;s racing logic for car care tips. Ask anything about engines, oil, and Philippine road conditions.</p>
             </div>
 
-            <div class="stress-dashboard">
-                <div class="stress-gauge-container">
-                    <div class="stress-gauge">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-avatar">
+                        <div class="chat-avatar-ring"></div>
+                        <div class="chat-avatar-img">MV</div>
+                    </div>
+                    <div class="chat-header-info">
+                        <span class="chat-name">Max Verstappen</span>
+                        <span class="chat-status"><span class="status-dot"></span> Online &mdash; Ready to help</span>
+                    </div>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-msg bot">
+                        <div class="chat-msg-avatar">MV</div>
+                        <div class="chat-msg-bubble">
+                            <p>Hey! I&rsquo;m Max. Whether it&rsquo;s EDSA traffic or a Sagada road trip, I know what your engine goes through. Ask me anything about car care, oil changes, or driving tips! &#127950;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-suggestions" id="chatSuggestions">
+                    <button class="chat-chip" data-q="What oil should I use for heavy traffic?">Best oil for traffic?</button>
+                    <button class="chat-chip" data-q="How often should I change my oil in the Philippines?">Oil change frequency?</button>
+                    <button class="chat-chip" data-q="Is synthetic oil really worth it?">Synthetic worth it?</button>
+                    <button class="chat-chip" data-q="How does heat damage my engine?">Heat damage?</button>
+                    <button class="chat-chip" data-q="What's Mobil 1 best product?">Best Mobil 1 product?</button>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Ask Max anything about car care..." autocomplete="off">
+                    <button class="chat-send" id="chatSend">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. MOBIL-1 ODYSSEY ==================== -->
+    <section class="section-block section-reveal" id="odyssey">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Feature 05</span>
+                <h2 class="section-title">Mobil 1 <span class="text-red">Odyssey</span></h2>
+                <p class="section-desc">A gamified travel log that rewards long-distance exploration with exclusive perks. Every kilometer you conquer earns progress toward badges, rewards, and legendary status.</p>
+            </div>
+
+            <div class="odyssey-map-card">
+                <div class="odyssey-header">
+                    <div class="odyssey-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div>
+                        <h3>Road Trip Explorer</h3>
+                        <p>Choose a destination and track your journey</p>
+                    </div>
+                </div>
+                <div class="odyssey-destinations">
+                    <button class="odyssey-dest active" data-dest="sagada" data-km="410" data-hours="10" data-mult="3">
+                        <span class="od-name">Sagada</span><span class="od-km">410 km</span><span class="od-mult">3x Pts</span>
+                    </button>
+                    <button class="odyssey-dest" data-dest="launion" data-km="270" data-hours="6" data-mult="2">
+                        <span class="od-name">La Union</span><span class="od-km">270 km</span><span class="od-mult">2x Pts</span>
+                    </button>
+                    <button class="odyssey-dest" data-dest="baguio" data-km="250" data-hours="5" data-mult="2">
+                        <span class="od-name">Baguio</span><span class="od-km">250 km</span><span class="od-mult">2x Pts</span>
+                    </button>
+                    <button class="odyssey-dest" data-dest="batangas" data-km="110" data-hours="3" data-mult="1.5">
+                        <span class="od-name">Batangas</span><span class="od-km">110 km</span><span class="od-mult">1.5x Pts</span>
+                    </button>
+                    <button class="odyssey-dest" data-dest="pagudpud" data-km="580" data-hours="12" data-mult="4">
+                        <span class="od-name">Pagudpud</span><span class="od-km">580 km</span><span class="od-mult">4x Pts</span>
+                    </button>
+                </div>
+                <div class="odyssey-route-info" id="odysseyRouteInfo">
+                    <div class="ori-stat"><span class="ori-label">Distance</span><span class="ori-value" id="oriDistance">410 km</span></div>
+                    <div class="ori-stat"><span class="ori-label">Est. Drive</span><span class="ori-value" id="oriDrive">~10 hrs</span></div>
+                    <div class="ori-stat"><span class="ori-label">Points Earned</span><span class="ori-value ori-highlight" id="oriPoints">1,230 pts</span></div>
+                    <div class="ori-stat"><span class="ori-label">Engine Stress</span><span class="ori-value" id="oriStress">Extreme</span></div>
+                </div>
+            </div>
+
+            <div class="odyssey-progress-card">
+                <div class="odyssey-prog-header">
+                    <h3>Your Odyssey Progress</h3>
+                    <span class="odyssey-tier" id="odysseyTier">Explorer</span>
+                </div>
+                <div class="mile-tracker">
+                    <div class="mile-bar">
+                        <div class="mile-fill" id="odysseyMileFill" style="width:0%"></div>
+                        <div class="mile-marker" style="left:25%" data-label="Bronze"></div>
+                        <div class="mile-marker" style="left:50%" data-label="Silver"></div>
+                        <div class="mile-marker" style="left:75%" data-label="Gold"></div>
+                    </div>
+                    <div class="mile-info">
+                        <span id="odysseyKmCurrent">0 km</span>
+                        <span id="odysseyKmTarget">10,000 km to Legend</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="claimJourneyBtn">Claim Journey Points</button>
+            </div>
+
+            <div class="odyssey-rewards">
+                <div class="reward-card">
+                    <div class="reward-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+                    <h4>Shopee Vouchers</h4>
+                    <p>Auto care vouchers on Shopee</p>
+                    <span class="reward-tier">Bronze &mdash; 2,500 km</span>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+                    <h4>Lazada Discounts</h4>
+                    <p>Exclusive coupons per milestone</p>
+                    <span class="reward-tier">Bronze &mdash; 2,500 km</span>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                    <h4>Road Trip Perks</h4>
+                    <p>Sagada &amp; La Union specials</p>
+                    <span class="reward-tier">Silver &mdash; 5,000 km</span>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                    <h4>Free Oil Change</h4>
+                    <p>Gold members get free Mobil 1</p>
+                    <span class="reward-tier">Gold &mdash; 7,500 km</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 6. SERVICE STAMPS ==================== -->
+    <section class="section-block section-reveal" id="stamps">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Feature 06</span>
+                <h2 class="section-title">Service <span class="text-red">Stamps</span></h2>
+                <p class="section-desc">Verified digital seals for every maintenance milestone reached. Collect stamps as proof of disciplined ownership &mdash; each one authenticated by the Mobil 1 network.</p>
+            </div>
+
+            <div class="stamps-grid" id="stampsGrid">
+                <div class="stamp-card earned" id="stampFirst">
+                    <div class="stamp-seal">
+                        <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="36" fill="none" stroke="#da3739" stroke-width="2" stroke-dasharray="4 3"/><circle cx="40" cy="40" r="28" fill="rgba(218,55,57,0.1)"/><text x="40" y="36" text-anchor="middle" fill="#da3739" font-family="Oswald" font-weight="700" font-size="12">MOBIL</text><text x="40" y="50" text-anchor="middle" fill="#fff" font-family="Oswald" font-weight="700" font-size="14">1</text></svg>
+                    </div>
+                    <h4>First Service</h4>
+                    <p>Log your first Mobil 1 oil change</p>
+                    <span class="stamp-status">Locked</span>
+                </div>
+                <div class="stamp-card" id="stamp3services">
+                    <div class="stamp-seal">
+                        <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="36" fill="none" stroke="#2b65ae" stroke-width="2" stroke-dasharray="4 3"/><circle cx="40" cy="40" r="28" fill="rgba(43,101,174,0.1)"/><text x="40" y="38" text-anchor="middle" fill="#2b65ae" font-family="Oswald" font-weight="700" font-size="18">3</text><text x="40" y="52" text-anchor="middle" fill="#8888aa" font-family="Inter" font-size="8">SERVICES</text></svg>
+                    </div>
+                    <h4>Triple Guard</h4>
+                    <p>Complete 3 Mobil 1 services</p>
+                    <span class="stamp-status">Locked</span>
+                </div>
+                <div class="stamp-card" id="stamp5k">
+                    <div class="stamp-seal">
+                        <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="36" fill="none" stroke="#22c55e" stroke-width="2" stroke-dasharray="4 3"/><circle cx="40" cy="40" r="28" fill="rgba(34,197,94,0.1)"/><text x="40" y="38" text-anchor="middle" fill="#22c55e" font-family="Oswald" font-weight="700" font-size="13">5,000</text><text x="40" y="52" text-anchor="middle" fill="#8888aa" font-family="Inter" font-size="8">KM</text></svg>
+                    </div>
+                    <h4>Road Warrior</h4>
+                    <p>Drive 5,000 km with Mobil 1</p>
+                    <span class="stamp-status">Locked</span>
+                </div>
+                <div class="stamp-card" id="stampMulti">
+                    <div class="stamp-seal">
+                        <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="36" fill="none" stroke="#ffd700" stroke-width="2" stroke-dasharray="4 3"/><circle cx="40" cy="40" r="28" fill="rgba(255,215,0,0.1)"/><text x="40" y="38" text-anchor="middle" fill="#ffd700" font-family="Oswald" font-weight="700" font-size="13">FLEET</text><text x="40" y="52" text-anchor="middle" fill="#8888aa" font-family="Inter" font-size="8">MASTER</text></svg>
+                    </div>
+                    <h4>Fleet Master</h4>
+                    <p>Register 3+ vehicles in garage</p>
+                    <span class="stamp-status">Locked</span>
+                </div>
+                <div class="stamp-card" id="stamp10k">
+                    <div class="stamp-seal">
+                        <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="36" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="4 3"/><circle cx="40" cy="40" r="28" fill="rgba(249,115,22,0.1)"/><text x="40" y="38" text-anchor="middle" fill="#f97316" font-family="Oswald" font-weight="700" font-size="12">10,000</text><text x="40" y="52" text-anchor="middle" fill="#8888aa" font-family="Inter" font-size="8">KM</text></svg>
+                    </div>
+                    <h4>Extreme Explorer</h4>
+                    <p>Drive 10,000 km total</p>
+                    <span class="stamp-status">Locked</span>
+                </div>
+                <div class="stamp-card" id="stampOdyssey">
+                    <div class="stamp-seal">
+                        <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="36" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="4 3"/><circle cx="40" cy="40" r="28" fill="rgba(168,85,247,0.1)"/><text x="40" y="36" text-anchor="middle" fill="#a855f7" font-family="Oswald" font-weight="700" font-size="10">ODYSSEY</text><text x="40" y="50" text-anchor="middle" fill="#a855f7" font-family="Oswald" font-weight="700" font-size="12">LEGEND</text></svg>
+                    </div>
+                    <h4>Odyssey Legend</h4>
+                    <p>Reach Legend status</p>
+                    <span class="stamp-status">Locked</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 7. EXTREME INDEX ==================== -->
+    <section class="section-block section-reveal" id="extremeindex">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Feature 07</span>
+                <h2 class="section-title">Extreme <span class="text-red">Index</span></h2>
+                <p class="section-desc">A live tracker that measures city-wide traffic and heat to warn you of engine stress. Real-time data shows how harsh Philippine driving really is.</p>
+            </div>
+
+            <div class="extreme-dashboard">
+                <div class="extreme-gauge-col">
+                    <div class="extreme-gauge">
                         <svg viewBox="0 0 300 200" class="gauge-svg">
                             <defs>
                                 <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                                     <stop offset="0%" style="stop-color:#22c55e"/>
                                     <stop offset="50%" style="stop-color:#eab308"/>
-                                    <stop offset="100%" style="stop-color:#ef4444"/>
+                                    <stop offset="100%" style="stop-color:#da3739"/>
                                 </linearGradient>
                             </defs>
                             <path d="M 30 170 A 120 120 0 0 1 270 170" fill="none" stroke="#1a1a2e" stroke-width="20" stroke-linecap="round"/>
-                            <path d="M 30 170 A 120 120 0 0 1 270 170" fill="none" stroke="url(#gaugeGrad)" stroke-width="20" stroke-linecap="round" class="gauge-fill" id="gaugeFill"/>
-                            <line x1="150" y1="170" x2="150" y2="60" stroke="#ff3333" stroke-width="3" class="gauge-needle" id="gaugeNeedle"/>
-                            <circle cx="150" cy="170" r="8" fill="#ff3333"/>
+                            <path d="M 30 170 A 120 120 0 0 1 270 170" fill="none" stroke="url(#gaugeGrad)" stroke-width="20" stroke-linecap="round"/>
+                            <line x1="150" y1="170" x2="150" y2="60" stroke="#da3739" stroke-width="3" class="gauge-needle" id="gaugeNeedle"/>
+                            <circle cx="150" cy="170" r="8" fill="#da3739"/>
                         </svg>
                         <div class="gauge-value" id="gaugeValue">78</div>
                         <div class="gauge-label" id="gaugeLabel">SEVERE</div>
                     </div>
                     <div class="gauge-classification">
-                        <div class="gc-item moderate"><span class="gc-dot"></span> Moderate (0–39)</div>
-                        <div class="gc-item severe"><span class="gc-dot"></span> Severe (40–69)</div>
-                        <div class="gc-item extreme"><span class="gc-dot"></span> Extreme (70–100)</div>
+                        <div class="gc-item moderate"><span class="gc-dot"></span> Moderate (0-39)</div>
+                        <div class="gc-item severe"><span class="gc-dot"></span> Severe (40-69)</div>
+                        <div class="gc-item extreme"><span class="gc-dot"></span> Extreme (70-100)</div>
                     </div>
                 </div>
 
-                <div class="stress-factors">
+                <div class="extreme-factors">
                     <div class="factor-card" data-delay="0">
-                        <div class="factor-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                        </div>
-                        <div class="factor-info">
-                            <h4>Traffic Congestion</h4>
-                            <div class="factor-bar"><div class="factor-fill" style="--fill-width: 92%; --fill-color: #ef4444;"></div></div>
-                            <span class="factor-value">92% — Critical</span>
-                        </div>
+                        <div class="factor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+                        <div class="factor-info"><h4>Traffic Congestion</h4><div class="factor-bar"><div class="factor-fill" style="--fill-width:92%;--fill-color:#da3739;"></div></div><span class="factor-value">92% — Critical</span></div>
                     </div>
                     <div class="factor-card" data-delay="100">
-                        <div class="factor-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M16.36 16.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M16.36 7.64l1.42-1.42"/></svg>
-                        </div>
-                        <div class="factor-info">
-                            <h4>Heat Index</h4>
-                            <div class="factor-bar"><div class="factor-fill" style="--fill-width: 85%; --fill-color: #f97316;"></div></div>
-                            <span class="factor-value">38°C — Severe</span>
-                        </div>
+                        <div class="factor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M16.36 16.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M16.36 7.64l1.42-1.42"/></svg></div>
+                        <div class="factor-info"><h4>Heat Index</h4><div class="factor-bar"><div class="factor-fill" style="--fill-width:85%;--fill-color:#f97316;"></div></div><span class="factor-value">38°C — Severe</span></div>
                     </div>
                     <div class="factor-card" data-delay="200">
-                        <div class="factor-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
-                        </div>
-                        <div class="factor-info">
-                            <h4>Flood Alerts</h4>
-                            <div class="factor-bar"><div class="factor-fill" style="--fill-width: 45%; --fill-color: #3b82f6;"></div></div>
-                            <span class="factor-value">Moderate Risk</span>
-                        </div>
+                        <div class="factor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
+                        <div class="factor-info"><h4>Flood Alerts</h4><div class="factor-bar"><div class="factor-fill" style="--fill-width:45%;--fill-color:#2b65ae;"></div></div><span class="factor-value">Moderate Risk</span></div>
                     </div>
                     <div class="factor-card" data-delay="300">
-                        <div class="factor-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-                        </div>
-                        <div class="factor-info">
-                            <h4>Idle Time</h4>
-                            <div class="factor-bar"><div class="factor-fill" style="--fill-width: 78%; --fill-color: #eab308;"></div></div>
-                            <span class="factor-value">78% of drive time</span>
-                        </div>
+                        <div class="factor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+                        <div class="factor-info"><h4>Idle Time</h4><div class="factor-bar"><div class="factor-fill" style="--fill-width:78%;--fill-color:#eab308;"></div></div><span class="factor-value">78% of drive time</span></div>
                     </div>
                     <div class="factor-card" data-delay="400">
-                        <div class="factor-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                        </div>
-                        <div class="factor-info">
-                            <h4>Stop &amp; Go Frequency</h4>
-                            <div class="factor-bar"><div class="factor-fill" style="--fill-width: 88%; --fill-color: #ef4444;"></div></div>
-                            <span class="factor-value">88% — Extreme</span>
-                        </div>
+                        <div class="factor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                        <div class="factor-info"><h4>Stop &amp; Go Frequency</h4><div class="factor-bar"><div class="factor-fill" style="--fill-width:88%;--fill-color:#da3739;"></div></div><span class="factor-value">88% — Extreme</span></div>
                     </div>
                 </div>
+            </div>
+
+            <div class="extreme-rec-banner">
+                <div class="rec-badge-tag">RECOMMENDATION</div>
+                <p>Based on current conditions, <strong>Mobil 1™ 5W-30 Full Synthetic</strong> is recommended for maximum engine protection in severe Philippine driving.</p>
             </div>
         </div>
     </section>
 
-    <!-- ==================== PIT STOP TO EDSA ==================== -->
-    <section class="pitstop-section section-reveal" id="pitstop">
+    <!-- ==================== 8. FORUM ==================== -->
+    <section class="section-block section-reveal" id="forum">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Interactive Experience</span>
-                <h2 class="section-title">Pit Stop <span class="text-red">to EDSA</span></h2>
-                <p class="section-desc">Max Verstappen narrates as your car's body panels turn transparent, revealing the engine block in glowing detail. Click hotspots to see how Mobil 1 solves specific "Pinoy Driving" problems.</p>
+                <span class="section-tag">Feature 08</span>
+                <h2 class="section-title">Community <span class="text-red">Forum</span></h2>
+                <p class="section-desc">A community for All-In-1 members to share routes, tips, and car care stories. Connect with fellow Mobil 1 users across the Philippines.</p>
             </div>
 
-            <!-- Narration -->
-            <div class="narration-bar" id="narrationBar">
-                <div class="narration-avatar">
-                    <div class="avatar-ring"></div>
-                    <div class="avatar-img">MV</div>
-                </div>
-                <div class="narration-content">
-                    <span class="narrator-name">Max Verstappen</span>
-                    <p class="narration-text" id="narrationText">"You think you know extreme driving? Let me show you what your engine faces every single day on these roads..."</p>
-                </div>
-                <div class="narration-indicator">
-                    <span class="ni-dot"></span>
-                    <span class="ni-dot"></span>
-                    <span class="ni-dot"></span>
+            <div class="forum-actions">
+                <button class="btn btn-primary" id="newPostBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    New Post
+                </button>
+                <div class="forum-tabs">
+                    <button class="forum-tab active" data-tab="all">All Posts</button>
+                    <button class="forum-tab" data-tab="routes">Routes</button>
+                    <button class="forum-tab" data-tab="tips">Tips</button>
+                    <button class="forum-tab" data-tab="stories">Stories</button>
                 </div>
             </div>
 
-            <!-- Car Visualization -->
-            <div class="car-viewer">
-                <div class="car-viewer-inner" id="carViewer">
-                    <div class="edsa-bg">
-                        <div class="edsa-buildings">
-                            <div class="building b1"></div>
-                            <div class="building b2"></div>
-                            <div class="building b3"></div>
-                            <div class="building b4"></div>
-                            <div class="building b5"></div>
+            <!-- New Post Modal -->
+            <div class="modal-overlay" id="newPostModal">
+                <div class="modal-backdrop modal-close-trigger"></div>
+                <div class="modal-panel">
+                    <button class="modal-close modal-close-trigger">&times;</button>
+                    <h3>Create Post</h3>
+                    <div class="form-stack">
+                        <div class="form-field">
+                            <label>Category</label>
+                            <select id="postCategory">
+                                <option value="routes">Routes</option>
+                                <option value="tips">Tips</option>
+                                <option value="stories">Stories</option>
+                            </select>
                         </div>
-                        <div class="edsa-road">
-                            <div class="road-line"></div>
-                            <div class="road-line"></div>
-                            <div class="road-line"></div>
+                        <div class="form-field">
+                            <label>Title</label>
+                            <input type="text" id="postTitle" placeholder="e.g. Best route to Baguio via TPLEX">
                         </div>
-                        <div class="traffic-cars">
-                            <div class="traffic-car tc1"></div>
-                            <div class="traffic-car tc2"></div>
-                            <div class="traffic-car tc3"></div>
+                        <div class="form-field">
+                            <label>Content</label>
+                            <textarea id="postContent" rows="4" placeholder="Share your experience..."></textarea>
                         </div>
-                        <div class="heat-waves active"></div>
-                    </div>
-                    <div class="main-car">
-                        <div class="car-body" id="carBody">
-                            <svg viewBox="0 0 600 250" class="car-svg">
-                                <path d="M80 180 L100 120 L160 80 L320 70 L420 80 L480 120 L520 180 Z" fill="#1a1a2e" stroke="#334" stroke-width="2"/>
-                                <path d="M170 80 L200 40 L380 35 L410 80" fill="#12122a" stroke="#334" stroke-width="2"/>
-                                <path d="M180 78 L205 45 L290 42 L290 78 Z" fill="rgba(100,150,255,0.15)" stroke="#445" stroke-width="1"/>
-                                <path d="M300 78 L300 42 L375 42 L400 78 Z" fill="rgba(100,150,255,0.15)" stroke="#445" stroke-width="1"/>
-                                <circle cx="160" cy="190" r="30" fill="#111" stroke="#333" stroke-width="3"/>
-                                <circle cx="160" cy="190" r="15" fill="#222" stroke="#444" stroke-width="2"/>
-                                <circle cx="440" cy="190" r="30" fill="#111" stroke="#333" stroke-width="3"/>
-                                <circle cx="440" cy="190" r="15" fill="#222" stroke="#444" stroke-width="2"/>
-                                <ellipse cx="510" cy="155" rx="12" ry="8" fill="#ffd700" opacity="0.8"/>
-                                <ellipse cx="90" cy="155" rx="12" ry="8" fill="#ff3333" opacity="0.6"/>
-                            </svg>
-                        </div>
-                        <div class="car-engine" id="carEngine">
-                            <svg viewBox="0 0 600 250" class="engine-svg">
-                                <rect x="200" y="90" width="200" height="100" rx="8" fill="#1a1a2e" stroke="#ff3333" stroke-width="1.5" class="engine-glow"/>
-                                <rect x="220" y="100" width="30" height="60" rx="4" fill="#222" stroke="#ff6644" stroke-width="1" class="cylinder"/>
-                                <rect x="260" y="100" width="30" height="60" rx="4" fill="#222" stroke="#ff6644" stroke-width="1" class="cylinder"/>
-                                <rect x="300" y="100" width="30" height="60" rx="4" fill="#222" stroke="#ff6644" stroke-width="1" class="cylinder"/>
-                                <rect x="340" y="100" width="30" height="60" rx="4" fill="#222" stroke="#ff6644" stroke-width="1" class="cylinder"/>
-                                <path d="M220 170 Q250 185 290 170 Q330 155 370 170" fill="none" stroke="#ffd700" stroke-width="2" class="oil-flow" stroke-dasharray="8 4"/>
-                                <line x1="235" y1="100" x2="235" y2="85" stroke="#aaa" stroke-width="3" class="piston"/>
-                                <line x1="275" y1="100" x2="275" y2="85" stroke="#aaa" stroke-width="3" class="piston"/>
-                                <line x1="315" y1="100" x2="315" y2="85" stroke="#aaa" stroke-width="3" class="piston"/>
-                                <line x1="355" y1="100" x2="355" y2="85" stroke="#aaa" stroke-width="3" class="piston"/>
-                                <rect x="430" y="100" width="50" height="80" rx="4" fill="#1a2a3a" stroke="#3b82f6" stroke-width="1"/>
-                                <line x1="440" y1="110" x2="440" y2="170" stroke="#3b82f6" stroke-width="1" opacity="0.5"/>
-                                <line x1="455" y1="110" x2="455" y2="170" stroke="#3b82f6" stroke-width="1" opacity="0.5"/>
-                                <line x1="470" y1="110" x2="470" y2="170" stroke="#3b82f6" stroke-width="1" opacity="0.5"/>
-                                <circle cx="170" cy="150" r="25" fill="#1a1a2e" stroke="#ffd700" stroke-width="1.5"/>
-                                <circle cx="170" cy="150" r="12" fill="#222" stroke="#ffd700" stroke-width="1"/>
-                                <text x="170" y="154" text-anchor="middle" fill="#ffd700" font-size="8" font-family="Inter">OIL</text>
-                            </svg>
-                        </div>
+                        <button class="btn btn-primary btn-full" id="submitPostBtn">Post</button>
                     </div>
                 </div>
             </div>
 
-            <button class="reveal-engine-btn" id="revealEngineBtn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                <span id="revealBtnText">Reveal the Engine</span>
-            </button>
-
-            <!-- Hotspot Cards -->
-            <div class="hotspot-cards" id="hotspotCards">
-                <h3 class="hotspot-cards-title">Click to see how Mobil 1 protects against "Pinoy Driving" problems:</h3>
-                <div class="hotspot-cards-grid">
-                    <button class="hotspot-card" data-title="Oil Thermal Breakdown" data-desc="In Metro Manila's 38°C heat + constant idling, conventional oil breaks down 3x faster. Mobil 1's advanced full synthetic formula resists thermal breakdown up to 500°F, keeping your engine protected in the worst Philippine heat. Max says: 'In F1, our oil faces 300°C. Your daily commute? It's closer than you think.'">
-                        <div class="hc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M16.36 16.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M16.36 7.64l1.42-1.42"/></svg></div>
-                        <div class="hc-info"><h4>Oil Thermal Breakdown</h4><p>38°C heat + idling = 3x faster degradation</p></div>
-                        <div class="hc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-                    </button>
-                    <button class="hotspot-card" data-title="Stop-and-Go Wear" data-desc="EDSA averages 47 stop-and-go cycles per kilometer. Each restart causes metal-on-metal contact. Mobil 1's molecular film stays bonded to engine parts even when stopped, providing instant protection on every restart. Max says: 'Even at pit stops, we need instant protection. Your engine needs the same.'">
-                        <div class="hc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-                        <div class="hc-info"><h4>Stop-and-Go Wear</h4><p>47 stop-and-go cycles per km on EDSA</p></div>
-                        <div class="hc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-                    </button>
-                    <button class="hotspot-card" data-title="Cooling System Strain" data-desc="Flood wading and extreme heat push cooling systems to their limits. Mobil 1 helps regulate engine temperature and prevents sludge build-up that clogs cooling passages. Max says: 'Our F1 car manages heat at 300 km/h. Your car fights it stuck at 0 km/h.'">
-                        <div class="hc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
-                        <div class="hc-info"><h4>Cooling System Strain</h4><p>Flood wading + extreme heat push limits</p></div>
-                        <div class="hc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-                    </button>
-                    <button class="hotspot-card" data-title="Sludge &amp; Carbon Buildup" data-desc="Short trips in heavy traffic prevent your engine from reaching optimal temperature, causing moisture and contaminants to form sludge. Mobil 1's advanced formula prevents sludge formation, keeping your engine clean even in the worst stop-and-go conditions.">
-                        <div class="hc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
-                        <div class="hc-info"><h4>Sludge &amp; Carbon Buildup</h4><p>Short trips + traffic = internal engine deposits</p></div>
-                        <div class="hc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Hotspot detail modal -->
-        <div class="hotspot-modal" id="hotspotModal">
-            <div class="modal-backdrop" id="modalBackdrop"></div>
-            <div class="modal-content">
-                <button class="modal-close" id="modalClose">&times;</button>
-                <div class="modal-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#ff3333" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <h3 id="modalTitle">Hotspot Title</h3>
-                <p id="modalDesc">Hotspot description.</p>
-                <div class="modal-cta">
-                    <span class="mobil-badge">Protected by Mobil 1&trade;</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== JARGON TRANSLATOR ==================== -->
-    <section class="jargon-section section-reveal" id="jargon">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Car Talk Made Simple</span>
-                <h2 class="section-title">Jargon <span class="text-red">Translator</span></h2>
-                <p class="section-desc">Don't know what your mechanic is talking about? Search any car term and get a plain-language explanation anyone can understand.</p>
-            </div>
-
-            <div class="jargon-search-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input type="text" id="jargonInput" placeholder="Search a car term... (e.g. PMS, viscosity, timing belt)" autocomplete="off">
-                <div class="jargon-clear" id="jargonClear" style="display:none;">&times;</div>
-            </div>
-
-            <div class="jargon-results" id="jargonResults"></div>
-
-            <div class="jargon-categories">
-                <h4>Browse by Category</h4>
-                <div class="jargon-cats-grid">
-                    <button class="jcat-btn active" data-cat="all">All</button>
-                    <button class="jcat-btn" data-cat="engine">Engine</button>
-                    <button class="jcat-btn" data-cat="oil">Oil &amp; Fluids</button>
-                    <button class="jcat-btn" data-cat="maintenance">Maintenance</button>
-                    <button class="jcat-btn" data-cat="electrical">Electrical</button>
-                    <button class="jcat-btn" data-cat="drivetrain">Drivetrain</button>
-                </div>
-            </div>
-
-            <div class="jargon-glossary" id="jargonGlossary"></div>
-        </div>
-    </section>
-
-    <!-- ==================== ENGINE STRESS CALCULATOR ==================== -->
-    <section class="calculator-section section-reveal" id="calculator">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Talyer Standee / QR Scan</span>
-                <h2 class="section-title">What's Your <span class="text-red">Engine Stress?</span></h2>
-                <p class="section-desc">Enter three quick details. In seconds, discover if your driving is Moderate, Severe, or Extreme — and which Mobil 1 product suits your conditions best.</p>
-            </div>
-
-            <div class="calc-layout">
-                <div class="calc-form-container">
-                    <div class="calc-form" id="calcForm">
-                        <div class="form-group">
-                            <label>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                                How much time do you spend in traffic?
-                            </label>
-                            <div class="slider-group">
-                                <input type="range" min="0" max="6" step="0.5" value="2" class="styled-range" id="trafficTime">
-                                <div class="range-labels">
-                                    <span>0 hrs</span>
-                                    <span class="range-value" id="trafficValue">2 hrs</span>
-                                    <span>6+ hrs</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M16.36 16.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M16.36 7.64l1.42-1.42"/></svg>
-                                How often do you drive in the heat?
-                            </label>
-                            <div class="heat-options" id="heatOptions">
-                                <button class="option-btn" data-value="1">Mild<span>Airconditioned garage</span></button>
-                                <button class="option-btn active" data-value="2">Moderate<span>Some outdoor parking</span></button>
-                                <button class="option-btn" data-value="3">High<span>Outdoor all day</span></button>
-                                <button class="option-btn" data-value="4">Extreme<span>Direct sun, no shade</span></button>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
-                                How often do you drive in flood-prone areas?
-                            </label>
-                            <div class="flood-options" id="floodOptions">
-                                <button class="option-btn" data-value="1">Never<span>Always dry routes</span></button>
-                                <button class="option-btn active" data-value="2">Sometimes<span>Rainy season only</span></button>
-                                <button class="option-btn" data-value="3">Often<span>Regular flood areas</span></button>
-                                <button class="option-btn" data-value="4">Always<span>Flood-prone daily</span></button>
-                            </div>
-                        </div>
-
-                        <button class="btn btn-primary btn-full" id="calculateBtn">
-                            <span>Calculate Engine Stress</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </button>
+            <div class="forum-feed" id="forumFeed">
+                <div class="forum-post" data-cat="routes">
+                    <div class="fp-header">
+                        <div class="fp-avatar" style="background:#1a3a5c;">JD</div>
+                        <div class="fp-meta"><span class="fp-author">Juan Dela Cruz</span><span class="fp-time">2 hours ago</span></div>
+                        <span class="fp-tag fp-tag-routes">Routes</span>
+                    </div>
+                    <h4 class="fp-title">TPLEX to Baguio — smoothest I've ever felt</h4>
+                    <p class="fp-body">Drove my Vios from Manila to Baguio via TPLEX last weekend. Oil temp stayed stable the whole time. Changed to Mobil 1 5W-30 before the trip and the engine felt like silk even on the zigzag road.</p>
+                    <div class="fp-actions">
+                        <button class="fp-action fp-like"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg> <span>24</span></button>
+                        <button class="fp-action fp-comment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> <span>8</span></button>
+                        <button class="fp-action fp-share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> Share</button>
                     </div>
                 </div>
 
-                <div class="calc-result-container">
-                    <div class="calc-result" id="calcResult">
-                        <div class="result-default">
-                            <div class="result-car-icon">
-                                <svg viewBox="0 0 100 60" fill="none" stroke="#334" stroke-width="2">
-                                    <path d="M15 45 L20 30 L35 20 L65 18 L80 25 L90 40 L90 45 Z"/>
-                                    <circle cx="30" cy="48" r="7"/>
-                                    <circle cx="75" cy="48" r="7"/>
-                                </svg>
-                            </div>
-                            <p>Adjust the parameters and click Calculate to see your Engine Stress classification.</p>
-                        </div>
-                        <div class="result-active" id="resultActive" style="display:none;">
-                            <div class="result-classification">
-                                <div class="result-ring">
-                                    <svg viewBox="0 0 120 120">
-                                        <circle cx="60" cy="60" r="54" fill="none" stroke="#1a1a2e" stroke-width="8"/>
-                                        <circle cx="60" cy="60" r="54" fill="none" stroke-width="8" stroke-linecap="round" class="result-ring-fill" id="resultRingFill"/>
-                                    </svg>
-                                    <span class="result-score" id="resultScore">78</span>
-                                </div>
-                            </div>
-                            <div class="result-label" id="resultLabel">SEVERE USE</div>
-                            <p class="result-message" id="resultMessage"></p>
-                            <div class="result-recommendation" id="resultRecommendation">
-                                <div class="rec-badge">RECOMMENDED PRODUCT</div>
-                                <h4 id="recProductName">Mobil 1&trade; Full Synthetic</h4>
-                                <p id="recProductDesc">Engineered for extreme Philippine driving conditions.</p>
-                            </div>
-                        </div>
+                <div class="forum-post" data-cat="tips">
+                    <div class="fp-header">
+                        <div class="fp-avatar" style="background:#3a1a1a;">MR</div>
+                        <div class="fp-meta"><span class="fp-author">Maria Reyes</span><span class="fp-time">5 hours ago</span></div>
+                        <span class="fp-tag fp-tag-tips">Tips</span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== QR EXPERIENCE HUB ==================== -->
-    <section class="qr-section section-reveal" id="qrhub">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">QR / Scan Experience</span>
-                <h2 class="section-title">Scan. Share. <span class="text-red">Connect.</span></h2>
-                <p class="section-desc">Every touchpoint becomes interactive. Scan QR codes at Talyer standees to check your engine stress, share your service passport, or unlock exclusive AR content with Max Verstappen.</p>
-            </div>
-
-            <div class="qr-grid">
-                <!-- QR Card 1: Talyer Standee Scanner -->
-                <div class="qr-card qr-card-featured">
-                    <div class="qr-card-header">
-                        <div class="qr-card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                        </div>
-                        <div class="qr-card-badge">STANDEE</div>
+                    <h4 class="fp-title">PSA: Check your oil BEFORE rainy season</h4>
+                    <p class="fp-body">Last year I learned the hard way — old oil + flood wading = nightmare. This time I switched to Mobil 1 5W-40 right before June. Engine sounds so much better even after wading through Espana.</p>
+                    <div class="fp-actions">
+                        <button class="fp-action fp-like"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg> <span>42</span></button>
+                        <button class="fp-action fp-comment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> <span>15</span></button>
+                        <button class="fp-action fp-share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> Share</button>
                     </div>
-                    <h3>Talyer Standee Scanner</h3>
-                    <p>Point your camera at the QR code on any Mobil 1 Talyer standee. Instantly opens the Engine Stress Calculator — personalized results in seconds.</p>
-                    <div class="qr-scan-area" id="qrScanArea">
-                        <div class="qr-viewfinder">
-                            <div class="qr-corner qr-tl"></div>
-                            <div class="qr-corner qr-tr"></div>
-                            <div class="qr-corner qr-bl"></div>
-                            <div class="qr-corner qr-br"></div>
-                            <div class="qr-scanline"></div>
-                            <div class="qr-scan-prompt">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                                <span>Tap to simulate scan</span>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary btn-full" id="qrScanBtn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-                        Scan Talyer QR Code
-                    </button>
                 </div>
 
-                <!-- QR Card 2: Share Your Passport -->
-                <div class="qr-card">
-                    <div class="qr-card-header">
-                        <div class="qr-card-icon qr-icon-blue">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-                        </div>
-                        <div class="qr-card-badge qr-badge-blue">SHARE</div>
+                <div class="forum-post" data-cat="stories">
+                    <div class="fp-header">
+                        <div class="fp-avatar" style="background:#1a2a3a;">KS</div>
+                        <div class="fp-meta"><span class="fp-author">Kevin Santos</span><span class="fp-time">1 day ago</span></div>
+                        <span class="fp-tag fp-tag-stories">Stories</span>
                     </div>
-                    <h3>Share Service Passport</h3>
-                    <p>Generate a QR code of your car's verified service history. Perfect for showing buyers, insurance, or your trusted mechanic.</p>
-                    <div class="qr-display" id="qrPassportDisplay">
-                        <div class="qr-placeholder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="6" y="6" width="1" height="1"/><rect x="17" y="6" width="1" height="1"/><rect x="17" y="17" width="1" height="1"/><rect x="6" y="17" width="1" height="1"/></svg>
-                            <span>Add a vehicle first to generate QR</span>
-                        </div>
-                        <canvas id="qrCanvas" width="200" height="200" style="display:none;"></canvas>
-                    </div>
-                    <div class="qr-vehicle-select" id="qrVehicleSelect" style="display:none;">
-                        <select id="qrVehiclePicker" class="qr-select"></select>
-                    </div>
-                    <button class="btn btn-outline btn-full" id="qrGenerateBtn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-                        Generate Passport QR
-                    </button>
-                </div>
-
-                <!-- QR Card 3: AR Max Verstappen -->
-                <div class="qr-card">
-                    <div class="qr-card-header">
-                        <div class="qr-card-icon qr-icon-gold">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        </div>
-                        <div class="qr-card-badge qr-badge-gold">AR</div>
-                    </div>
-                    <h3>3D Max Verstappen AR</h3>
-                    <p>Scan the special AR-enabled standee at select locations. Max Verstappen appears in 3D and walks you through Mobil 1 protection features.</p>
-                    <div class="qr-ar-preview">
-                        <div class="qr-ar-avatar">
-                            <div class="qr-ar-ring"></div>
-                            <div class="qr-ar-initials">MV</div>
-                            <div class="qr-ar-badge-3d">3D</div>
-                        </div>
-                        <div class="qr-ar-info">
-                            <div class="qr-ar-label">AR Experience</div>
-                            <div class="qr-ar-status">
-                                <span class="qr-ar-dot"></span>
-                                Available at 12 locations
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn btn-outline btn-full" id="qrARBtn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                        Launch AR Preview
-                    </button>
-                </div>
-
-                <!-- QR Card 4: Product Scan -->
-                <div class="qr-card">
-                    <div class="qr-card-header">
-                        <div class="qr-card-icon qr-icon-green">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        </div>
-                        <div class="qr-card-badge qr-badge-green">VERIFY</div>
-                    </div>
-                    <h3>Verify Authentic Product</h3>
-                    <p>Scan the QR on any Mobil 1 bottle to verify authenticity, check manufacture date, and get the correct viscosity recommendation for your vehicle.</p>
-                    <div class="qr-verify-demo">
-                        <div class="qr-verify-item">
-                            <svg viewBox="0 0 20 20" fill="currentColor" style="width:16px;height:16px;color:#22c55e;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            <span>Authentic Mobil 1™</span>
-                        </div>
-                        <div class="qr-verify-item">
-                            <svg viewBox="0 0 20 20" fill="currentColor" style="width:16px;height:16px;color:#22c55e;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            <span>Batch: MNL-2026-0842</span>
-                        </div>
-                        <div class="qr-verify-item">
-                            <svg viewBox="0 0 20 20" fill="currentColor" style="width:16px;height:16px;color:#22c55e;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            <span>Recommended: 5W-30</span>
-                        </div>
-                    </div>
-                    <button class="btn btn-outline btn-full" id="qrVerifyBtn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        Scan Product QR
-                    </button>
-                </div>
-            </div>
-
-            <!-- QR Location Map -->
-            <div class="qr-locations-card">
-                <div class="qr-loc-header">
-                    <div class="qr-loc-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    </div>
-                    <div>
-                        <h3>Talyer Standee Locations</h3>
-                        <p>Find QR-enabled standees near you</p>
+                    <h4 class="fp-title">200k km on my Fortuner — Mobil 1 since Day 1</h4>
+                    <p class="fp-body">My 2018 Fortuner just hit 200,000 km. Been using Mobil 1 5W-30 since the first PMS. Engine compression still perfect. No major repairs, no sludge. This oil is the real deal.</p>
+                    <div class="fp-actions">
+                        <button class="fp-action fp-like"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg> <span>89</span></button>
+                        <button class="fp-action fp-comment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> <span>31</span></button>
+                        <button class="fp-action fp-share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> Share</button>
                     </div>
                 </div>
-                <div class="qr-loc-grid">
-                    <div class="qr-loc-item">
-                        <span class="qr-loc-name">Shell EDSA Ortigas</span>
-                        <span class="qr-loc-status active">Active</span>
-                    </div>
-                    <div class="qr-loc-item">
-                        <span class="qr-loc-name">Petron C5 Taguig</span>
-                        <span class="qr-loc-status active">Active</span>
-                    </div>
-                    <div class="qr-loc-item">
-                        <span class="qr-loc-name">Caltex Makati Ave</span>
-                        <span class="qr-loc-status active">Active</span>
-                    </div>
-                    <div class="qr-loc-item">
-                        <span class="qr-loc-name">Shell Marcos Highway</span>
-                        <span class="qr-loc-status">Coming Soon</span>
-                    </div>
-                    <div class="qr-loc-item">
-                        <span class="qr-loc-name">Petron Quezon Ave</span>
-                        <span class="qr-loc-status">Coming Soon</span>
-                    </div>
-                    <div class="qr-loc-item">
-                        <span class="qr-loc-name">Caltex Alabang</span>
-                        <span class="qr-loc-status active">Active</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- REVEAL SECTION -->
-    <section class="reveal-section">
-        <div class="container">
-            <div class="reveal-content">
-                <div class="reveal-quote">
-                    <div class="quote-marks">&ldquo;</div>
-                    <h2>What feels routine is actually <span class="text-red">Severe Use.</span></h2>
-                    <p>We pull back the curtain on the invisible strain of Philippine roads. For severe conditions, only full Mobil 1 synthetic protection will do.</p>
-                </div>
-                <div class="reveal-stats">
-                    <div class="stat-item">
-                        <div class="stat-value" data-count="38">0</div>
-                        <div class="stat-suffix">°C</div>
-                        <div class="stat-label">Avg. Metro Heat Index</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" data-count="47">0</div>
-                        <div class="stat-suffix">/km</div>
-                        <div class="stat-label">Stop-and-Go Cycles</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" data-count="92">0</div>
-                        <div class="stat-suffix">%</div>
-                        <div class="stat-label">Drivers in Severe+ Zone</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== REWARDS / CONQUER THE ROADS ==================== -->
-    <section class="rewards-section section-reveal" id="rewards">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Conquer the Roads with Mobil 1</span>
-                <h2 class="section-title">Extreme Miles, <span class="text-red">Extreme Rewards</span></h2>
-                <p class="section-desc">Just as the Michelin Star encouraged people to drive further to eat, Mobil 1 encourages you to take that long road trip to Sagada or that coastal drive to La Union. Every kilometer is progress.</p>
-            </div>
-
-            <!-- Road Trip Explorer -->
-            <div class="roadtrip-map-card">
-                <div class="rtm-header">
-                    <div class="rtm-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    </div>
-                    <div>
-                        <h3>Road Trip Explorer</h3>
-                        <p>Powered with Google Maps — plan your next extreme journey</p>
-                    </div>
-                </div>
-                <div class="rtm-destinations">
-                    <button class="rtm-dest active" data-dest="sagada" data-km="410" data-hours="10" data-multiplier="3">
-                        <span class="rtm-name">Sagada</span>
-                        <span class="rtm-km">410 km</span>
-                        <span class="rtm-mult">3x Points</span>
-                    </button>
-                    <button class="rtm-dest" data-dest="launion" data-km="270" data-hours="6" data-multiplier="2">
-                        <span class="rtm-name">La Union</span>
-                        <span class="rtm-km">270 km</span>
-                        <span class="rtm-mult">2x Points</span>
-                    </button>
-                    <button class="rtm-dest" data-dest="baguio" data-km="250" data-hours="5" data-multiplier="2">
-                        <span class="rtm-name">Baguio</span>
-                        <span class="rtm-km">250 km</span>
-                        <span class="rtm-mult">2x Points</span>
-                    </button>
-                    <button class="rtm-dest" data-dest="batangas" data-km="110" data-hours="3" data-multiplier="1.5">
-                        <span class="rtm-name">Batangas</span>
-                        <span class="rtm-km">110 km</span>
-                        <span class="rtm-mult">1.5x Points</span>
-                    </button>
-                    <button class="rtm-dest" data-dest="pagudpud" data-km="580" data-hours="12" data-multiplier="4">
-                        <span class="rtm-name">Pagudpud</span>
-                        <span class="rtm-km">580 km</span>
-                        <span class="rtm-mult">4x Points</span>
-                    </button>
-                </div>
-                <div class="rtm-map" id="roadtripMap">
-                    <div class="rtm-route-info" id="routeInfo">
-                        <div class="ri-stat">
-                            <span class="ri-label">Distance</span>
-                            <span class="ri-value" id="riDistance">410 km</span>
-                        </div>
-                        <div class="ri-stat">
-                            <span class="ri-label">Est. Drive</span>
-                            <span class="ri-value" id="riDrive">~10 hrs</span>
-                        </div>
-                        <div class="ri-stat">
-                            <span class="ri-label">Points Earned</span>
-                            <span class="ri-value ri-highlight" id="riPoints">1,230 pts</span>
-                        </div>
-                        <div class="ri-stat">
-                            <span class="ri-label">Stress Level</span>
-                            <span class="ri-value" id="riStress">Extreme</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Rewards Grid -->
-            <div class="rewards-grid">
-                <div class="reward-card featured">
-                    <div class="reward-icon-big">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    </div>
-                    <div class="reward-content">
-                        <h3>Extreme Miles Program</h3>
-                        <p>The more "Extreme" your miles, the faster you unlock exclusive perks. Every kilometer is progress toward your next reward, making Mobil 1 the essential partner for every extreme journey.</p>
-                        <div class="mile-tracker">
-                            <div class="mile-bar">
-                                <div class="mile-fill" id="rewardMileFill" style="width: 0%;"></div>
-                                <div class="mile-marker" style="left: 30%;" data-label="Bronze"></div>
-                                <div class="mile-marker" style="left: 60%;" data-label="Silver"></div>
-                                <div class="mile-marker" style="left: 90%;" data-label="Gold"></div>
-                            </div>
-                            <div class="mile-info">
-                                <span id="rewardKmCurrent">0 km</span>
-                                <span class="mile-target" id="rewardKmTarget">10,000 km to Gold</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="reward-card">
-                    <div class="reward-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
-                    <h4>Shopee Vouchers</h4>
-                    <p>Unlock discount vouchers on Shopee for auto care products and more.</p>
-                    <span class="reward-tier">Bronze — 3,000 km</span>
-                </div>
-                <div class="reward-card">
-                    <div class="reward-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-                    <h4>Lazada Discounts</h4>
-                    <p>Earn exclusive Lazada coupons for every milestone you conquer.</p>
-                    <span class="reward-tier">Bronze — 3,000 km</span>
-                </div>
-                <div class="reward-card">
-                    <div class="reward-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-                    <h4>Road Trip Perks</h4>
-                    <p>Special rewards for Sagada trips, La Union drives, and more epic destinations.</p>
-                    <span class="reward-tier">Silver — 6,000 km</span>
-                </div>
-                <div class="reward-card">
-                    <div class="reward-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                    <h4>Free Oil Change</h4>
-                    <p>Gold members get free Mobil 1 oil change services at partner shops.</p>
-                    <span class="reward-tier">Gold — 9,000 km</span>
-                </div>
-            </div>
-
-            <div class="rewards-cta">
-                <p>Turning every kilometer into progress toward your next reward.</p>
-                <a href="#passport" class="btn btn-primary btn-lg">Start Your Extreme Miles</a>
             </div>
         </div>
     </section>
@@ -1051,27 +828,24 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <svg class="footer-logo" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
-                        <text x="0" y="32" font-family="Oswald, sans-serif" font-weight="700" font-size="36" fill="#FF0000">Mobil</text>
+                        <text x="0" y="32" font-family="Oswald, sans-serif" font-weight="700" font-size="36" fill="#da3739">Mobil</text>
                         <text x="105" y="32" font-family="Oswald, sans-serif" font-weight="700" font-size="36" fill="#fff">1</text>
                     </svg>
                     <p>Your All-in-1 Portal. From EDSA to Sagada.</p>
                 </div>
                 <div class="footer-links">
-                    <h5>Portal</h5>
-                    <a href="#passport">Service Passport</a>
-                    <a href="#stress">Extreme Index</a>
-                    <a href="#pitstop">Pit Stop to EDSA</a>
-                    <a href="#jargon">Jargon Translator</a>
-                    <a href="#calculator">Stress Calculator</a>
-                    <a href="#qrhub">QR Experience</a>
-                    <a href="#rewards">Rewards</a>
+                    <h5>Features</h5>
+                    <a href="#servicelog">Service Log</a>
+                    <a href="#garage">Garage</a>
+                    <a href="#calendar">Calendar</a>
+                    <a href="#talktomax">Talk to Max</a>
                 </div>
                 <div class="footer-links">
-                    <h5>Products</h5>
-                    <a href="#">Mobil 1&trade; 0W-20</a>
-                    <a href="#">Mobil 1&trade; 5W-30</a>
-                    <a href="#">Mobil 1&trade; 5W-40</a>
-                    <a href="#">Mobil Super&trade;</a>
+                    <h5>More</h5>
+                    <a href="#odyssey">Odyssey</a>
+                    <a href="#stamps">Stamps</a>
+                    <a href="#extremeindex">Extreme Index</a>
+                    <a href="#forum">Forum</a>
                 </div>
                 <div class="footer-links">
                     <h5>Connect</h5>
@@ -1094,13 +868,13 @@
             <span class="fab-label">Add Vehicle</span>
             <div class="fab-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
         </button>
-        <button class="fab-option" data-action="calc-stress">
-            <span class="fab-label">Calculate Stress</span>
-            <div class="fab-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <button class="fab-option" data-action="log-service">
+            <span class="fab-label">Log Service</span>
+            <div class="fab-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
         </button>
-        <button class="fab-option" data-action="scan-qr">
-            <span class="fab-label">Scan QR</span>
-            <div class="fab-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+        <button class="fab-option" data-action="talk-max">
+            <span class="fab-label">Talk to Max</span>
+            <div class="fab-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
         </button>
     </div>
     <button class="app-fab" id="appFab" aria-label="Quick Actions">
@@ -1113,25 +887,25 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             <span>Home</span>
         </a>
-        <a href="#passport" class="bottom-tab active" data-section="passport">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            <span>Passport</span>
+        <a href="#garage" class="bottom-tab active" data-section="garage">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span>Garage</span>
         </a>
-        <a href="#pitstop" class="bottom-tab" data-section="pitstop">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span>Pit Stop</span>
+        <a href="#talktomax" class="bottom-tab" data-section="talktomax">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            <span>Max</span>
         </a>
-        <a href="#jargon" class="bottom-tab" data-section="jargon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <span>Jargon</span>
+        <a href="#odyssey" class="bottom-tab" data-section="odyssey">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Odyssey</span>
         </a>
-        <a href="#rewards" class="bottom-tab" data-section="rewards">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <span>Rewards</span>
+        <a href="#forum" class="bottom-tab" data-section="forum">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            <span>Forum</span>
         </a>
     </nav>
 
-    <!-- NOTIFICATION TOAST -->
+    <!-- TOAST -->
     <div class="toast-container" id="toastContainer"></div>
 
     <script src="script.js"></script>
