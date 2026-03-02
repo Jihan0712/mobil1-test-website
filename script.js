@@ -57,15 +57,9 @@ calYear = now.getFullYear();
         startPage.classList.add('hidden');
         setTimeout(() => {
             startPage.style.display = 'none';
-            // Show splash screen briefly
-            splash.style.opacity = '1';
-            splash.style.visibility = 'visible';
-            splash.classList.remove('hidden');
-            // Then auto-dismiss splash after its animation
-            setTimeout(() => {
-                splash.classList.add('hidden');
-                setTimeout(() => splash.style.display = 'none', 600);
-            }, 1800);
+            // Skip splash — go straight to main content
+            splash.style.display = 'none';
+            splash.classList.add('hidden');
         }, 600);
     });
 })();
