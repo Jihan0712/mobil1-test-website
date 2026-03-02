@@ -137,36 +137,36 @@ textarea { resize: vertical; }
     gap: 0;
 }
 
-/* TOP wall: text flows outward — 18s for smooth long loop */
+/* TOP wall: text flows inward — 18s for smooth long loop */
 .flow-out {
-    animation: flowOutDown 18s linear infinite;
+    animation: flowInUp 18s linear infinite;
 }
-/* BOTTOM wall: text flows outward */
+/* BOTTOM wall: text flows inward */
 .flow-out-reverse {
-    animation: flowOutUp 20s linear infinite;
+    animation: flowInDown 20s linear infinite;
 }
-/* LEFT wall: text flows outward */
+/* LEFT wall: text flows inward */
 .flow-out-left {
-    animation: flowOutRight 16s linear infinite;
+    animation: flowInLeft 16s linear infinite;
 }
-/* RIGHT wall: text flows outward */
+/* RIGHT wall: text flows inward */
 .flow-out-right {
-    animation: flowOutLeft 22s linear infinite;
+    animation: flowInRight 22s linear infinite;
 }
 
-@keyframes flowOutUp {
+@keyframes flowInUp {
     from { transform: translateY(0); }
     to   { transform: translateY(-50%); }
 }
-@keyframes flowOutDown {
+@keyframes flowInDown {
     from { transform: translateY(-50%); }
     to   { transform: translateY(0); }
 }
-@keyframes flowOutLeft {
+@keyframes flowInLeft {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
 }
-@keyframes flowOutRight {
+@keyframes flowInRight {
     from { transform: translateX(-50%); }
     to   { transform: translateX(0); }
 }
@@ -220,30 +220,10 @@ textarea { resize: vertical; }
 }
 
 /* ── CENTER CARD ── */
-.start-center {
-    position: relative; z-index: 100;
-    background: #fff;
-    width: 220px;
-    padding: 15px 0;
-    text-align: center;
-    box-shadow: 0 0 50px #000;
-}
-.brand-mobil {
-    font-size: 3rem; margin: 0;
-    letter-spacing: -2px; color: #000;
-}
-.brand-mobil span { color: #da3739; }
-.brand-allin {
-    font-size: 2.2rem; font-weight: 900;
-    color: #000; margin-top: -10px;
-}
-.brand-divider {
-    height: 6px; background: #000;
-    width: 100%; margin: 5px 0;
-}
-.brand-one {
-    font-size: 12rem; line-height: .8;
-    font-weight: 900; color: #000;
+.brand-logo-img {
+    display: block; width: 60%; height: 60%;
+    margin: 0 auto;
+    object-fit: contain;
 }
 
 /* Bottom section */
