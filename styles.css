@@ -219,7 +219,7 @@ textarea { resize: vertical; }
     flex-wrap: wrap; align-content: stretch;
 }
 
-/* ── CENTER CARD ── */
+/* ── CENTER CARD ──- */
 .brand-logo-img {
     display: block; width: 60%; height: 60%;
     margin: 0 auto;
